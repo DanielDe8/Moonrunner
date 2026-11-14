@@ -15,6 +15,7 @@ script = ExtResource("2_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=884422120]
 texture_filter = 1
+position = Vector2(0, -4)
 texture = ExtResource("1_igspp")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=884422121]
@@ -22,14 +23,12 @@ texture = ExtResource("3_light")
 texture_scale = 1.6
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1512177957]
+position = Vector2(0, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=728767698]
-position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_rewik")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1034230670]
-position = Vector2(0, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=675561524]
-position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_mqatm")
