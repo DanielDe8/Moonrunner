@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://c41jg2w0bk8dt"]
+
+[ext_resource type="Script" uid="uid://beck1r130srfd" path="res://Scripts/player.gd" id="1_8r7yd"]
+[ext_resource type="Texture2D" uid="uid://bib3dfsyttpt8" path="res://Assets/rover_1.png" id="2_n6db0"]
+[ext_resource type="Texture2D" uid="uid://dlpd1ryoc6wrk" path="res://Assets/light_texture.png" id="3_yk4ok"]
+[ext_resource type="Texture2D" uid="uid://b5yea7678idhe" path="res://Assets/rover_2.png" id="4_t1tke"]
+[ext_resource type="Texture2D" uid="uid://c1upsf5s1sxdw" path="res://Assets/rover_3.png" id="5_qwxmt"]
+[ext_resource type="Texture2D" uid="uid://c77jvh6mjd8mo" path="res://Assets/rover_4.png" id="6_i4q3a"]
+[ext_resource type="Texture2D" uid="uid://8nrdp6qmmaj8" path="res://Assets/antenna_l.png" id="7_qwt6c"]
+[ext_resource type="Texture2D" uid="uid://dkmrdkra85pwk" path="res://Assets/antenna_s.png" id="8_ivlea"]
+[ext_resource type="Texture2D" uid="uid://cm0jt7nm55aro" path="res://Assets/atenna_r.png" id="9_0ryu0"]
+[ext_resource type="Texture2D" uid="uid://bqehiqpovrri1" path="res://Assets/battery-1.png" id="10_cut1y"]
+[ext_resource type="Texture2D" uid="uid://b0mvcl4qhlnth" path="res://Assets/battery-2.png" id="11_2qdoy"]
+[ext_resource type="Texture2D" uid="uid://4kx7twj2j6tr" path="res://Assets/battery-3.png" id="12_dmq7b"]
+[ext_resource type="Texture2D" uid="uid://cxabubq1r87c6" path="res://Assets/battery-4.png" id="13_kwjl5"]
+[ext_resource type="Texture2D" uid="uid://drx4yktp4a2os" path="res://Assets/battery-5.png" id="14_g1u4f"]
+[ext_resource type="Texture2D" uid="uid://jg6lfje6nic1" path="res://Assets/battery-6.png" id="15_vy1ne"]
+[ext_resource type="Texture2D" uid="uid://k8b5t408japk" path="res://Assets/battery-7.png" id="16_qsaej"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kln2b"]
+radius = 8.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0lj0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n6db0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t1tke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qwxmt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i4q3a")
+}],
+"loop": 1,
+"name": &"move_left",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_i4q3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qwxmt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t1tke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n6db0")
+}],
+"loop": 1,
+"name": &"move_right",
+"speed": 15.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kkhfn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qwt6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ivlea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0ryu0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8m6qr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_cut1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2qdoy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dmq7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_kwjl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_g1u4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_vy1ne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_qsaej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_qsaej")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=1788329522 groups=["Player"]]
+motion_mode = 1
+script = ExtResource("1_8r7yd")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=569772186]
+zoom = Vector2(4.5, 4.5)
+position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1862852225]
+shape = SubResource("CircleShape2D_kln2b")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2009509175]
+blend_mode = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=761549764]
+texture = ExtResource("3_yk4ok")
+
+[node name="MovementAnimation" type="AnimatedSprite2D" parent="." unique_id=569069137]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_s0lj0")
+animation = &"move_left"
+
+[node name="AntennaAnimation" type="AnimatedSprite2D" parent="." unique_id=387810847]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_kkhfn")
+
+[node name="BatteryAnimation" type="AnimatedSprite2D" parent="." unique_id=27852291]
+texture_filter = 1
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_8m6qr")
+frame_progress = 0.9951284
