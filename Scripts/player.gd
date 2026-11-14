@@ -35,9 +35,9 @@ func _physics_process( delta: float) -> void:
 				$MovementAnimation.play("move_left")
 				
 			if velocity.x > 0:
-				$AnimatedSprite2D.frame = 0   # right
+				$AntennaAnimation.frame = 0   # right
 			elif velocity.x < 0:
-				$AnimatedSprite2D.frame = 2   # left
+				$AntennaAnimation.frame = 2   # left
 	else:
 		motion_timer = 0.0
 		stop_timer += delta
@@ -45,6 +45,6 @@ func _physics_process( delta: float) -> void:
 		
 		# Snap antenna back to still only after stop_delay passes
 		if stop_timer >= stop_delay:
-			$AnimatedSprite2D.frame = 1   # still
+			$AntennaAnimation.frame = 1   # still
 	
 	move_and_slide()

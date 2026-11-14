@@ -54,13 +54,13 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_qwt6c")
+"texture": ExtResource("9_0ryu0")
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_ivlea")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_0ryu0")
+"texture": ExtResource("7_qwt6c")
 }],
 "loop": 1,
 "name": &"default",
@@ -89,6 +89,6 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_s0lj0")
 animation = &"move_left"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=387810847]
+[node name="AntennaAnimation" type="AnimatedSprite2D" parent="." unique_id=387810847]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kkhfn")
