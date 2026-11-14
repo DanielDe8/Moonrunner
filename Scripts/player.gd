@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var moving_battery_consumption: float = 3.0
 @export var warp_battery_consumption: float = 10.0
 @export var m_animation_name: StringName = &"default"
+@export var m_ground_animation_name: StringName = &"default"
 
 var battery_life: float = max_battery_life
 var near_camp: bool = false
@@ -23,6 +24,7 @@ var target_zoom: float = 4.0
 @onready var camera: Camera2D = $Camera2D
 @onready var charging_area: Area2D = $"../Camp/ChargingArea"
 @onready var m_animation: AnimatedSprite2D = $MiningAnimation
+@onready var m_ground_animation: AnimatedSprite2D = get_node_or_null("MiningAnimationGround")
 
 
 func _ready() -> void:
@@ -31,6 +33,10 @@ func _ready() -> void:
 
 	m_animation.stop()
 	m_animation.frame = 0
+
+	if m_ground_animation != null:
+		m_ground_animation.stop()
+		m_ground_animation.frame = 0
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -49,9 +55,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func play_mining() -> void:
-	if not m_animation.is_playing():
-		m_animation.play(m_animation_name)
-				
+	if m_animation.is_playing():
+		return
+	m_animation.play(m_animation_name)
+	if m_ground_animation != null:
+		m_ground_animation.play(m_ground_animation_name)
 
 
 func get_input():

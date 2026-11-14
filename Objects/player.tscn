@@ -21,6 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://rby30fherb7y" path="res://Assets/mining_animation_3.png" id="19_yxlei"]
 [ext_resource type="Texture2D" uid="uid://bm5hkca2n50wb" path="res://Assets/mining_animation_4.png" id="20_ctpi4"]
 [ext_resource type="Texture2D" uid="uid://018spkppgsga" path="res://Assets/mining_animation_5.png" id="21_gurtw"]
+[ext_resource type="Texture2D" uid="uid://duxh7wqalsyx8" path="res://Assets/mining_animation_ground_1.png" id="22_padco"]
+[ext_resource type="Texture2D" uid="uid://bp1ewgdmjylk7" path="res://Assets/mining_animation_ground_2.png" id="23_ry78x"]
+[ext_resource type="Texture2D" uid="uid://dfgy0knpxdk3p" path="res://Assets/mining_animation_ground_3.png" id="24_wmepj"]
+[ext_resource type="Texture2D" uid="uid://bu6grq4nsrwi2" path="res://Assets/mining_animation_ground_4.png" id="25_1gquk"]
+[ext_resource type="Texture2D" uid="uid://b5lvj37va3of6" path="res://Assets/mining_animation_ground_5.png" id="26_m5j13"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kln2b"]
 radius = 8.0
@@ -134,7 +139,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4kt2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_gurtw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_padco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ry78x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_wmepj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_1gquk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_m5j13")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="player" type="CharacterBody2D" unique_id=1788329522 groups=["Player"]]
+z_index = 10
 motion_mode = 1
 script = ExtResource("1_0ar0x")
 speed = 90
@@ -145,6 +177,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1862852225]
+z_index = 2
 shape = SubResource("CircleShape2D_kln2b")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2009509175]
@@ -171,6 +204,12 @@ sprite_frames = SubResource("SpriteFrames_8m6qr")
 frame_progress = 0.9951284
 
 [node name="MiningAnimation" type="AnimatedSprite2D" parent="." unique_id=1348643251]
+z_index = 2
 texture_filter = 1
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_uqjsr")
+
+[node name="MiningAnimationGround" type="AnimatedSprite2D" parent="." unique_id=377935608]
+z_index = 1
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_g4kt2")
