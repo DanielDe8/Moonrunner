@@ -91,7 +91,7 @@ func _physics_process(delta: float) -> void:
 
 	$"../CanvasLayer/Control/Label".text = str(battery_percentage * 100).pad_decimals(0) + "%"
 
-	if battery_percentage <= 0.9:
+	if battery_percentage <= 0.0:
 		position = charging_area.position
 		battery_life = max_battery_life
 	
