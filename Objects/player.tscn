@@ -184,7 +184,6 @@ shape = SubResource("CircleShape2D_kln2b")
 blend_mode = 1
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=761549764]
-energy = 0.0
 blend_mode = 2
 texture = ExtResource("2_slvmq")
 
