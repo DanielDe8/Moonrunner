@@ -119,6 +119,7 @@ position_smoothing_speed = 3.0
 shape = SubResource("CircleShape2D_kln2b")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2009509175]
+energy = 0.99
 blend_mode = 1
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=761549764]
