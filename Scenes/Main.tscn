@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bsly0swvikiyv" path="res://Objects/player.tscn" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://bmktn6edi67ph" path="res://Objects/collecteble_template.tscn" id="2_kln2b"]
 [ext_resource type="Texture2D" uid="uid://dl3p017cdg0ce" path="res://Assets/planet_surface_merged.png" id="3_merged"]
-[ext_resource type="Script" path="res://Scripts/ore_spawner.gd" id="4_pbw6q"]
+[ext_resource type="Script" uid="uid://ddin3htwgf7ov" path="res://Scripts/ore_spawner.gd" id="4_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dcx1qkahlrj3e" path="res://Objects/planet_surface.tscn" id="5_pbw6q"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rgh2o"]
@@ -30,7 +30,6 @@ tile_set = SubResource("TileSet_jph6x")
 
 [node name="CollectiblesLayer" type="TileMapLayer" parent="." unique_id=1483234889]
 texture_filter = 1
-tile_map_data = PackedByteArray("AAD5//v/AAAAAAAAAQD5//z/AAAAAAAAAQD5//3/AAAAAAAAAQD5//7/AAAAAAAAAQD5////AAAAAAAAAQD6//v/AAAAAAAAAQD6//z/AAAAAAAAAQD6//3/AAAAAAAAAQD6//7/AAAAAAAAAQD6////AAAAAAAAAQD7//v/AAAAAAAAAQD7//z/AAAAAAAAAQD7//3/AAAAAAAAAQD7//7/AAAAAAAAAQD7////AAAAAAAAAQD8//v/AAAAAAAAAQD8//z/AAAAAAAAAQD8//3/AAAAAAAAAQD8//7/AAAAAAAAAQD8////AAAAAAAAAQD9//v/AAAAAAAAAQD9//z/AAAAAAAAAQD9//3/AAAAAAAAAQD9//7/AAAAAAAAAQD9////AAAAAAAAAQD+//v/AAAAAAAAAQD+//z/AAAAAAAAAQD+//3/AAAAAAAAAQD+//7/AAAAAAAAAQD+////AAAAAAAAAQD+/wIAAAAAAAAAAQABAP3/AAAAAAAAAQABAP7/AAAAAAAAAQABAP//AAAAAAAAAQABAAAAAAAAAAAAAQACAP3/AAAAAAAAAQACAP7/AAAAAAAAAQACAP//AAAAAAAAAQACAAAAAAAAAAAAAQADAP3/AAAAAAAAAQADAP7/AAAAAAAAAQADAP//AAAAAAAAAQADAAAAAAAAAAAAAQAEAP3/AAAAAAAAAQAEAP7/AAAAAAAAAQAEAP//AAAAAAAAAQAEAAAAAAAAAAAAAQAFAP3/AAAAAAAAAQAFAP7/AAAAAAAAAQAFAP//AAAAAAAAAQAFAAAAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_jph6x")
 script = ExtResource("4_pbw6q")
 
