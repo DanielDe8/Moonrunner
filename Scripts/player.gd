@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var warp_battery_consumption : float= 10.0
 
 var battery_life: float = max_battery_life
+var near_camp: bool = false
 
 var motion_timer = 0.0
 var stop_timer = 0.0
