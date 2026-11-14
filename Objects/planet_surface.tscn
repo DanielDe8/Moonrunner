@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://dcx1qkahlrj3e"]
 
-[ext_resource type="Script" path="res://planet_surface_randomizer.gd" id="1_yt4cx"]
+[ext_resource type="Script" uid="uid://dkb6hvnpnkedd" path="res://planet_surface_randomizer.gd" id="1_yt4cx"]
 [ext_resource type="Texture2D" uid="uid://c0ejue8vuwrjf" path="res://Assets/planet_surface_1.png" id="2_rde83"]
 [ext_resource type="Texture2D" uid="uid://co3ojeyxqbcts" path="res://Assets/planet_surface_2.png" id="3_1qqbj"]
 [ext_resource type="Texture2D" uid="uid://dyenjdexh7ebe" path="res://Assets/planet_surface_3.png" id="4_oj5f3"]
 [ext_resource type="Texture2D" uid="uid://cays080663xvd" path="res://Assets/planet_surface_4.png" id="5_2wwvk"]
+[ext_resource type="Texture2D" uid="uid://cjbvdp2su5ohp" path="res://Assets/notexture.png" id="6_rde83"]
 
 [node name="planet_surface" type="Node2D" unique_id=75191593]
 script = ExtResource("1_yt4cx")
@@ -28,3 +29,7 @@ texture = ExtResource("4_oj5f3")
 visible = false
 texture_filter = 1
 texture = ExtResource("5_2wwvk")
+
+[node name="random" type="Sprite2D" parent="." unique_id=538944791]
+texture_filter = 3
+texture = ExtResource("6_rde83")
