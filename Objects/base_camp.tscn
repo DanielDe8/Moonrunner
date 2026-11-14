@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://camp1234fire"]
 
-[ext_resource type="Texture2D" uid="uid://dl4aoexg4tgqm" path="res://Assets/campfire.png" id="2_fire"]
+[ext_resource type="Texture2D" uid="uid://ck5enrtww8miq" path="res://Assets/base.png" id="1_igspp"]
 [ext_resource type="Texture2D" uid="uid://dlpd1ryoc6wrk" path="res://Assets/light_texture.png" id="3_light"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fire"]
@@ -10,7 +10,7 @@ radius = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=884422120]
 texture_filter = 1
-texture = ExtResource("2_fire")
+texture = ExtResource("1_igspp")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=884422121]
 texture = ExtResource("3_light")

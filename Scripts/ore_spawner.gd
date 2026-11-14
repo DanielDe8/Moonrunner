@@ -2,11 +2,10 @@ extends TileMapLayer
 
 @export var ore_scene: PackedScene = preload("res://Objects/collecteble_template.tscn")
 @export var map_seed: int = 0
-@export var view_radius: int = 20
+@export var view_radius: int = 50
 @export var infinite_follow_player: bool = true
-@export var ore_frequency: float = 0.02
-@export var ore_size_threshold: float = 0.48
-@export var distance_size_bonus: float = 0.0008
+@export var ore_frequency: float = 0.002
+@export var ore_size_threshold: float = 0.20
 @export var starting_area_radius: int = 4
 @export var spawn_starter_patch: bool = true
 
@@ -111,8 +110,7 @@ func should_spawn_ore(cell: Vector2i) -> bool:
 			return true
 
 	var base_val: float = ore_noise.get_noise_2d(float(cell.x), float(cell.y))
-	var dist_bonus: float = min(dist_from_origin * distance_size_bonus, 0.14)
-	return (base_val + jitter + dist_bonus) > ore_size_threshold
+	return (base_val + jitter) > ore_size_threshold
 
 
 func create_circular_boundary(radius: int) -> void:

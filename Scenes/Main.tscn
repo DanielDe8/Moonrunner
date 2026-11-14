@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dl3p017cdg0ce" path="res://Assets/planet_surface_merged.png" id="3_merged"]
 [ext_resource type="Script" uid="uid://ddin3htwgf7ov" path="res://Scripts/ore_spawner.gd" id="4_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dcx1qkahlrj3e" path="res://Objects/planet_surface.tscn" id="5_pbw6q"]
-[ext_resource type="PackedScene" uid="uid://camp1234fire" path="res://Objects/camp.tscn" id="6_camp"]
+[ext_resource type="PackedScene" uid="uid://camp1234fire" path="res://Objects/base_camp.tscn" id="6_camp"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rgh2o"]
 scenes/1/scene = ExtResource("2_kln2b")
