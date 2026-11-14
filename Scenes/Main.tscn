@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ddin3htwgf7ov" path="res://Scripts/ore_spawner.gd" id="4_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dcx1qkahlrj3e" path="res://Objects/planet_surface.tscn" id="5_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://camp1234fire" path="res://Objects/base_camp.tscn" id="6_camp"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="7_main"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rgh2o"]
 scenes/1/scene = ExtResource("2_kln2b")
@@ -23,6 +24,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_rgh2o")
 sources/1 = SubResource("TileSetAtlasSource_surface")
 
 [node name="Node2D" type="Node2D" unique_id=1416863422]
+script = ExtResource("7_main")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1483234888]
 texture_filter = 1

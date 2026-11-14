@@ -1,11 +1,11 @@
 extends TileMapLayer
 
-@export var ore_scene: PackedScene = preload("res://Objects/collecteble_template.tscn")
 @export var map_seed: int = 0
-@export var view_radius: int = 50
+@export var view_radius: int = 22
+@export var max_view_radius: int = 60
 @export var infinite_follow_player: bool = true
-@export var ore_frequency: float = 0.002
-@export var ore_size_threshold: float = 0.20
+@export var ore_frequency: float = 0.05
+@export var ore_size_threshold: float = 0.45
 @export var starting_area_radius: int = 4
 @export var spawn_starter_patch: bool = true
 
@@ -15,6 +15,7 @@ extends TileMapLayer
 var generated_cells: Dictionary = {}
 var ore_noise := FastNoiseLite.new()
 var edge_noise := FastNoiseLite.new()
+var type_noise := FastNoiseLite.new()
 var starter_patch_center := Vector2i(6, -2)
 var last_player_cell := Vector2i(999999, 999999)
 var last_active_radius: int = 0
@@ -46,7 +47,7 @@ func get_active_view_radius() -> int:
 		var cam: Camera2D = player.get_node("Camera2D")
 		var zoom_val: float = max(cam.zoom.x, 0.5)
 		var zoom_needed_radius: int = int(ceil(52.0 / zoom_val))
-		return clampi(max(view_radius, zoom_needed_radius), view_radius, 38)
+		return clampi(max(view_radius, zoom_needed_radius), view_radius, max(view_radius, max_view_radius))
 	return view_radius
 
 
@@ -62,9 +63,22 @@ func setup_noise() -> void:
 	edge_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	edge_noise.frequency = 0.22
 
+	type_noise.seed = active_seed + 4242
+	type_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
+	type_noise.frequency = 0.018
+
 	var angle: float = randf() * TAU
 	var dist: float = float(starting_area_radius + 3)
 	starter_patch_center = Vector2i(int(round(cos(angle) * dist)), int(round(sin(angle) * dist)))
+
+
+func get_spawnable_objects() -> Array[PackedScene]:
+	var main_node := get_parent()
+	if main_node != null and "spawnable_objects" in main_node:
+		var list: Array[PackedScene] = main_node.spawnable_objects
+		if not list.is_empty():
+			return list
+	return []
 
 
 func update_map_around_player() -> void:
@@ -91,26 +105,40 @@ func generate_circle_area(center: Vector2i, radius: int) -> void:
 func generate_tile(cell: Vector2i) -> void:
 	generated_cells[cell] = true
 	ground_layer.set_cell(cell, 0, Vector2i.ZERO, 2)
-	if should_spawn_ore(cell):
-		var ore = ore_scene.instantiate()
-		ore.position = ground_layer.map_to_local(cell)
-		add_child(ore)
+	var obj_index: int = get_spawn_object_index(cell)
+	if obj_index >= 0:
+		var objects := get_spawnable_objects()
+		if obj_index < objects.size() and objects[obj_index] != null:
+			var obj := objects[obj_index].instantiate()
+			obj.position = ground_layer.map_to_local(cell)
+			add_child(obj)
 
 
-func should_spawn_ore(cell: Vector2i) -> bool:
+func get_spawn_object_index(cell: Vector2i) -> int:
+	var objects := get_spawnable_objects()
+	if objects.is_empty():
+		return -1
+
 	var dist_from_origin: float = Vector2(cell).length()
 	if dist_from_origin < float(starting_area_radius):
-		return false
+		return -1
 
 	var jitter: float = edge_noise.get_noise_2d(float(cell.x), float(cell.y)) * 0.12
 
 	if spawn_starter_patch:
 		var starter_dist: float = Vector2(cell - starter_patch_center).length()
-		if starter_dist <= 2.6 + jitter * 4.0:
-			return true
+		if starter_dist <= 2.2 + jitter * 3.0:
+			return 0
 
 	var base_val: float = ore_noise.get_noise_2d(float(cell.x), float(cell.y))
-	return (base_val + jitter) > ore_size_threshold
+	if (base_val + jitter) <= ore_size_threshold:
+		return -1
+
+	if objects.size() == 1:
+		return 0
+
+	var norm: float = clampf((type_noise.get_noise_2d(float(cell.x), float(cell.y)) + 0.6) / 1.2, 0.0, 0.9999)
+	return int(floor(norm * float(objects.size())))
 
 
 func create_circular_boundary(radius: int) -> void:
