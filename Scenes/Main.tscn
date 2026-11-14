@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cnhkgjgdhjdc1"]
 
-[ext_resource type="PackedScene" uid="uid://bsly0swvikiyv" path="res://Objects/Player.tscn" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://bsly0swvikiyv" path="res://Objects/player.tscn" id="1_r150o"]
 [ext_resource type="Texture2D" uid="uid://u6ipfxc83v4x" path="res://Assets/icon.svg" id="2_idj7w"]
 [ext_resource type="PackedScene" uid="uid://bmktn6edi67ph" path="res://Objects/collecteble_template.tscn" id="2_kln2b"]
 [ext_resource type="Texture2D" uid="uid://dl3p017cdg0ce" path="res://Assets/planet_surface_merged.png" id="3_merged"]
@@ -42,5 +42,5 @@ shape = SubResource("RectangleShape2D_j2vsi")
 position = Vector2(337, 156)
 texture = ExtResource("2_idj7w")
 
-[node name="Player" parent="." unique_id=1788329522 instance=ExtResource("1_r150o")]
+[node name="player" parent="." unique_id=1788329522 instance=ExtResource("1_r150o")]
 speed = 90

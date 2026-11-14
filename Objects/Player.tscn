@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bsly0swvikiyv"]
 
-[ext_resource type="Script" uid="uid://beck1r130srfd" path="res://Scripts/player.gd" id="1_8r7yd"]
-[ext_resource type="Texture2D" uid="uid://bib3dfsyttpt8" path="res://Assets/rover_1.png" id="2_n6db0"]
-[ext_resource type="Texture2D" uid="uid://dlpd1ryoc6wrk" path="res://Assets/light_texture.png" id="3_yk4ok"]
-[ext_resource type="Texture2D" uid="uid://b5yea7678idhe" path="res://Assets/rover_2.png" id="4_t1tke"]
-[ext_resource type="Texture2D" uid="uid://c1upsf5s1sxdw" path="res://Assets/rover_3.png" id="5_qwxmt"]
-[ext_resource type="Texture2D" uid="uid://c77jvh6mjd8mo" path="res://Assets/rover_4.png" id="6_i4q3a"]
+[ext_resource type="Script" uid="uid://beck1r130srfd" path="res://Scripts/player.gd" id="1_0ar0x"]
+[ext_resource type="Texture2D" uid="uid://dlpd1ryoc6wrk" path="res://Assets/light_texture.png" id="2_slvmq"]
+[ext_resource type="Texture2D" uid="uid://bib3dfsyttpt8" path="res://Assets/rover_1.png" id="3_ng3n2"]
+[ext_resource type="Texture2D" uid="uid://b5yea7678idhe" path="res://Assets/rover_2.png" id="4_f7am4"]
+[ext_resource type="Texture2D" uid="uid://c1upsf5s1sxdw" path="res://Assets/rover_3.png" id="5_3n8j0"]
+[ext_resource type="Texture2D" uid="uid://c77jvh6mjd8mo" path="res://Assets/rover_4.png" id="6_hyl1l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kln2b"]
 radius = 8.0
@@ -14,16 +14,16 @@ radius = 8.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_n6db0")
+"texture": ExtResource("3_ng3n2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_t1tke")
+"texture": ExtResource("4_f7am4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_qwxmt")
+"texture": ExtResource("5_3n8j0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_i4q3a")
+"texture": ExtResource("6_hyl1l")
 }],
 "loop": 1,
 "name": &"move_left",
@@ -31,25 +31,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_i4q3a")
+"texture": ExtResource("6_hyl1l")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_qwxmt")
+"texture": ExtResource("5_3n8j0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_t1tke")
+"texture": ExtResource("4_f7am4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_n6db0")
+"texture": ExtResource("3_ng3n2")
 }],
 "loop": 1,
 "name": &"move_right",
 "speed": 15.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=1788329522 groups=["Player"]]
+[node name="player" type="CharacterBody2D" unique_id=1788329522 groups=["Player"]]
 motion_mode = 1
-script = ExtResource("1_8r7yd")
+script = ExtResource("1_0ar0x")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=569772186]
 zoom = Vector2(4.5, 4.5)
@@ -62,7 +62,7 @@ shape = SubResource("CircleShape2D_kln2b")
 blend_mode = 1
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=761549764]
-texture = ExtResource("3_yk4ok")
+texture = ExtResource("2_slvmq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=569069137]
 texture_filter = 1
