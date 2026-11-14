@@ -13,7 +13,6 @@ const DIRS: Array[Vector2i] = [
 
 @onready var ground_layer: TileMapLayer = $"../TileMapLayer"
 @onready var player: CharacterBody2D = $"../player"
-@onready var camp: Node2D = get_node_or_null("../Camp")
 
 var active_seed: int = 0
 var base_cell := Vector2i.ZERO
@@ -26,9 +25,6 @@ var last_active_radius: int = 0
 
 
 func _ready() -> void:
-	active_seed = map_seed if map_seed != 0 else randi()
-	if camp != null:
-		base_cell = ground_layer.local_to_map(ground_layer.to_local(camp.global_position))
 	load_spawn_configs()
 	ground_layer.clear()
 	clear()
