@@ -22,10 +22,8 @@ position_smoothing_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1862852225]
 shape = SubResource("CircleShape2D_kln2b")
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=615736114]
-show_behind_parent = true
-position = Vector2(-2.1684303, 1.875145)
-color = Color(0.9639546, 0.9663505, 0.9335374, 1)
-energy = 1.75
-shadow_enabled = true
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2009509175]
+blend_mode = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=761549764]
 texture = ExtResource("3_yk4ok")
