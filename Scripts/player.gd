@@ -48,30 +48,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			target_zoom = clamp(target_zoom - zoom_step, min_zoom, max_zoom)
 
 
-<<<<<<< HEAD
 ## Reads directional input and sets movement velocity.
-func get_input():
-=======
 func get_input() -> void:
->>>>>>> origin/master
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
 
 
-<<<<<<< HEAD
-func _physics_process(delta: float) -> void:
-	# Smoothly interpolate camera zoom toward target_zoom.
-	if camera != null:
-		var z: float = lerp(camera.zoom.x, target_zoom, clamp(delta * zoom_smooth_speed, 0.0, 1.0))
-		camera.zoom = Vector2(z, z)
-
-	get_input()
-
-	# Play directional rover tread animation, or pause when stationary.
-=======
+## Updates movement, antenna, and mining animations based on current state.
 func update_animations(delta: float) -> void:
-	# Movement animation
->>>>>>> origin/master
+	# Play directional rover tread animation, or pause when stationary.
 	if velocity.x > 0:
 		$MovementAnimation.play("move_right")
 	elif velocity.x < 0:
@@ -108,12 +93,9 @@ func update_animations(delta: float) -> void:
 		$MiningAnimation.hide()
 		$MiningAnimation.pause()
 
-<<<<<<< HEAD
-	# Recharge inside the camp's ChargingArea; otherwise drain based on idle vs moving.
-=======
-
+## Updates battery charge/drain, HUD label, and respawns at camp if depleted.
 func check_battery(delta: float) -> void:
->>>>>>> origin/master
+	# Recharge inside the camp's ChargingArea; otherwise drain based on idle, moving, and mining.
 	if charging_area.overlaps_body(self):
 		battery_life = min(battery_life + delta * 10, max_battery_life)
 	else:
