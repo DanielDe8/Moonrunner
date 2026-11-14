@@ -6,10 +6,18 @@ const DIRS: Array[Vector2i] = [
 	Vector2i.DOWN,
 	Vector2i.UP
 ]
+const IMAGE_EXTENSIONS: Array[String] = ["png", "webp", "jpg", "jpeg", "svg"]
 
 @export var map_seed: int = 0
 @export var view_radius: int = 22
 @export var max_view_radius: int = 60
+
+@export_group("Rocks")
+@export var rock_prefix: String = "rock"
+@export var rock_folder: String = "res://Assets"    # scanned recursively
+@export_range(0.0, 1.0, 0.001) var rock_spawn_chance: float = 0.02
+@export var rock_min_distance: int = 6    # keep rocks away from the camp
+@export var rock_max_distance: int = -1    # -1 = no limit
 
 @onready var ground_layer: TileMapLayer = $"../TileMapLayer"
 @onready var player: CharacterBody2D = $"../player"
@@ -17,6 +25,8 @@ const DIRS: Array[Vector2i] = [
 var active_seed: int = 0
 var base_cell := Vector2i.ZERO
 var spawn_configs: Array[Dictionary] = []
+var rock_tiles: Array[Dictionary] = []
+var rock_textures: Array[Texture2D] = []
 var generated_cells: Dictionary = {}
 var occupied_cells: Dictionary = {}
 var pending_spawns: Dictionary = {}
@@ -25,7 +35,16 @@ var last_active_radius: int = 0
 
 
 func _ready() -> void:
+	# Wait one frame to ensure the parent node and its exports are fully ready
+	await get_tree().process_frame
+	
+	# Set base_cell to the player's starting position so distance checks work
+	if player != null:
+		base_cell = ground_layer.local_to_map(player.global_position)
+	
 	load_spawn_configs()
+	discover_rock_tiles()
+	discover_rock_textures()
 	ground_layer.clear()
 	clear()
 	update_map()
@@ -38,10 +57,17 @@ func _physics_process(_delta: float) -> void:
 func load_spawn_configs() -> void:
 	spawn_configs.clear()
 	var main_node := get_parent()
+	
 	if main_node == null or not ("spawnable_objects" in main_node):
+		push_warning("Parent node missing or has no 'spawnable_objects' property!")
 		return
 
-	for scene in main_node.spawnable_objects:
+	var objects = main_node.get("spawnable_objects")
+	if objects == null or objects.is_empty():
+		push_warning("Parent node's 'spawnable_objects' array is empty! Assign your ore scenes in the Inspector.")
+		return
+
+	for scene in objects:
 		if scene == null:
 			continue
 		var sample: Node = scene.instantiate()
@@ -55,7 +81,99 @@ func load_spawn_configs() -> void:
 		}
 		sample.free()
 		spawn_configs.append(config)
+	
+	print("Successfully loaded ", spawn_configs.size(), " ore spawn config(s).")
 
+
+# ---------- Rock discovery ----------
+
+func _is_rock_name(value: Variant) -> bool:
+	if not (value is String or value is StringName):
+		return false
+	return String(value).to_lower().begins_with(rock_prefix.to_lower())
+
+
+func discover_rock_tiles() -> void:
+	rock_tiles.clear()
+	if tile_set == null:
+		push_warning("No TileSet on the overlay layer, so no rock tiles found.")
+		return
+
+	var data_layers: Array[String] = []
+	for i in tile_set.get_custom_data_layers_count():
+		data_layers.append(tile_set.get_custom_data_layer_name(i))
+
+	for i in tile_set.get_source_count():
+		var sid: int = tile_set.get_source_id(i)
+		var source: TileSetSource = tile_set.get_source(sid)
+
+		if source is TileSetAtlasSource:
+			var atlas := source as TileSetAtlasSource
+			var source_match: bool = _is_rock_name(atlas.resource_name)
+			if not source_match and atlas.texture != null:
+				source_match = _is_rock_name(atlas.texture.resource_path.get_file())
+
+			for t in atlas.get_tiles_count():
+				var coords: Vector2i = atlas.get_tile_id(t)
+				for a in atlas.get_alternative_tiles_count(coords):
+					var alt: int = atlas.get_alternative_tile_id(coords, a)
+					var matched: bool = source_match
+					if not matched:
+						var data: TileData = atlas.get_tile_data(coords, alt)
+						for layer_name in data_layers:
+							if _is_rock_name(data.get_custom_data(layer_name)):
+								matched = true
+								break
+					if matched:
+						rock_tiles.append({"source": sid, "coords": coords, "alt": alt})
+
+		elif source is TileSetScenesCollectionSource:
+			var scenes := source as TileSetScenesCollectionSource
+			var scenes_match: bool = _is_rock_name(scenes.resource_name)
+			for t in scenes.get_scene_tiles_count():
+				var tid: int = scenes.get_scene_tile_id(t)
+				var packed: PackedScene = scenes.get_scene_tile_scene(tid)
+				var file_match: bool = packed != null and _is_rock_name(packed.resource_path.get_file())
+				if scenes_match or file_match:
+					rock_tiles.append({"source": sid, "coords": Vector2i.ZERO, "alt": tid})
+
+	print("Discovered ", rock_tiles.size(), " rock tile(s) in the TileSet")
+
+
+func discover_rock_textures() -> void:
+	rock_textures.clear()
+	_scan_dir(rock_folder)
+	print("Discovered ", rock_textures.size(), " rock image(s) under ", rock_folder)
+	for tex in rock_textures:
+		print("  ", tex.resource_path)
+
+
+func _scan_dir(path: String) -> void:
+	var dir := DirAccess.open(path)
+	if dir == null:
+		push_warning("Cannot open folder: " + path)
+		return
+
+	dir.list_dir_begin()
+	var entry: String = dir.get_next()
+	while entry != "":
+		if dir.current_is_dir():
+			if not entry.begins_with("."):
+				_scan_dir(path.path_join(entry))
+		else:
+			# Exported builds list "x.png.import" / "x.png.remap" instead of "x.png"
+			var file_name: String = entry.trim_suffix(".import").trim_suffix(".remap")
+			if _is_rock_name(file_name) and file_name.get_extension().to_lower() in IMAGE_EXTENSIONS:
+				var full_path: String = path.path_join(file_name)
+				if ResourceLoader.exists(full_path):
+					var tex := load(full_path)
+					if tex is Texture2D and not rock_textures.has(tex):
+						rock_textures.append(tex)
+		entry = dir.get_next()
+	dir.list_dir_end()
+
+
+# ---------- Map generation ----------
 
 func update_map() -> void:
 	if player == null:
@@ -97,19 +215,56 @@ func generate_tile(cell: Vector2i) -> void:
 		pending_spawns.erase(cell)
 		return
 
-	if occupied_cells.has(cell) or spawn_configs.is_empty():
+	if occupied_cells.has(cell):
 		return
 
-	var rng := RandomNumberGenerator.new()
-	rng.seed = hash([active_seed, cell.x, cell.y])
+	# Ores first
+	if not spawn_configs.is_empty():
+		var rng := RandomNumberGenerator.new()
+		rng.seed = hash([active_seed, cell.x, cell.y])
 
-	var order := spawn_configs.duplicate()
-	shuffle_array(order, rng)
+		var order := spawn_configs.duplicate()
+		shuffle_array(order, rng)
 
-	for config in order:
-		if can_place_at(cell, config, {}) and rng.randf() < config.spawn_chance:
-			spawn_cluster(cell, config, rng)
-			break
+		for config in order:
+			if can_place_at(cell, config, {}) and rng.randf() < config.spawn_chance:
+				spawn_cluster(cell, config, rng)
+				break
+
+	# Then rocks, only if the cell is still free
+	if not occupied_cells.has(cell):
+		try_spawn_rock(cell)
+
+
+func try_spawn_rock(cell: Vector2i) -> void:
+	var pool_size: int = rock_tiles.size() + rock_textures.size()
+	if pool_size == 0:
+		return
+
+	var rock_config := {
+		"min_dist": rock_min_distance,
+		"max_dist": rock_max_distance
+	}
+	if not can_place_at(cell, rock_config, {}):
+		return
+
+	var rock_rng := RandomNumberGenerator.new()
+	rock_rng.seed = hash([active_seed, cell.x, cell.y, "wordentity"])
+
+	if rock_rng.randf() >= rock_spawn_chance:
+		return
+
+	var idx: int = rock_rng.randi_range(0, pool_size - 1)
+	occupied_cells[cell] = true
+
+	if idx < rock_tiles.size():
+		var pick: Dictionary = rock_tiles[idx]
+		set_cell(cell, pick.source, pick.coords, pick.alt)
+	else:
+		var sprite := Sprite2D.new()
+		sprite.texture = rock_textures[idx - rock_tiles.size()]
+		sprite.position = ground_layer.map_to_local(cell)
+		add_child(sprite)
 
 
 func can_place_at(cell: Vector2i, config: Dictionary, own_cluster: Dictionary) -> bool:
