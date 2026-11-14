@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://beck1r130srfd" path="res://Scripts/player.gd" id="1_8r7yd"]
 [ext_resource type="Texture2D" uid="uid://bib3dfsyttpt8" path="res://Assets/rover_1.png" id="2_n6db0"]
+[ext_resource type="Texture2D" uid="uid://dlpd1ryoc6wrk" path="res://Assets/light_texture.png" id="3_yk4ok"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kln2b"]
 radius = 8.0
@@ -20,3 +21,11 @@ position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1862852225]
 shape = SubResource("CircleShape2D_kln2b")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=615736114]
+show_behind_parent = true
+position = Vector2(-2.1684303, 1.875145)
+color = Color(0.9639546, 0.9663505, 0.9335374, 1)
+energy = 1.75
+shadow_enabled = true
+texture = ExtResource("3_yk4ok")
