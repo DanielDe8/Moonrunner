@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bsly0swvikiyv"]
 
+[ext_resource type="Texture2D" uid="uid://b5yea7678idhe" path="res://Assets/rover_2.png" id="4_t1tke"]
 [ext_resource type="Script" uid="uid://beck1r130srfd" path="res://Scripts/player.gd" id="1_0ar0x"]
 [ext_resource type="Texture2D" uid="uid://dlpd1ryoc6wrk" path="res://Assets/light_texture.png" id="2_slvmq"]
 [ext_resource type="Texture2D" uid="uid://bib3dfsyttpt8" path="res://Assets/rover_1.png" id="3_ng3n2"]
@@ -47,6 +48,23 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_kkhfn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qwt6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ivlea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0ryu0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="player" type="CharacterBody2D" unique_id=1788329522 groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_0ar0x")
@@ -64,7 +82,11 @@ blend_mode = 1
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=761549764]
 texture = ExtResource("2_slvmq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=569069137]
+[node name="MovementAnimation" type="AnimatedSprite2D" parent="." unique_id=569069137]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_s0lj0")
 animation = &"move_left"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=387810847]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_kkhfn")
