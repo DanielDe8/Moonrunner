@@ -47,30 +47,7 @@ func get_input() -> void:
 	velocity = input_direction * speed
 
 
-func check_mining(delta: float) -> void:
-	is_mining = false
-	
-	if Input.is_action_pressed("mine"):
-		for collectable in get_tree().get_nodes_in_group("Collectables"):
-			if collectable.overlaps_body(self):
-				is_mining = true
-				collectable.mine(delta)
-				
-	if is_mining:
-		$MiningAnimation.show()
-		$MiningAnimation.play("default")
-	else:
-		$MiningAnimation.hide()
-		$MiningAnimation.pause()
-
-func _physics_process(delta: float) -> void:
-	# Smooth camera zoom
-	if camera != null:
-		var z: float = lerp(camera.zoom.x, target_zoom, clamp(delta * zoom_smooth_speed, 0.0, 1.0))
-		camera.zoom = Vector2(z, z)
-
-	get_input()
-
+func update_animations(delta: float) -> void:
 	# Movement animation
 	if velocity.x > 0:
 		$MovementAnimation.play("move_right")
@@ -99,8 +76,17 @@ func _physics_process(delta: float) -> void:
 
 		if stop_timer >= stop_delay:
 			$AntennaAnimation.frame = 1
+		
+	# Mining animation
+	if is_mining:
+		$MiningAnimation.show()
+		$MiningAnimation.play("default")
+	else:
+		$MiningAnimation.hide()
+		$MiningAnimation.pause()
 
-	# Battery
+
+func check_battery(delta: float) -> void:
 	if charging_area.overlaps_body(self):
 		battery_life = min(battery_life + delta * 10, max_battery_life)
 	else:
@@ -120,6 +106,26 @@ func _physics_process(delta: float) -> void:
 		global_position = charging_area.global_position
 		battery_life = max_battery_life
 
+
+func check_mining(delta: float) -> void:
+	is_mining = false
+	
+	if Input.is_action_pressed("mine"):
+		for collectable in get_tree().get_nodes_in_group("Collectables"):
+			if collectable.overlaps_body(self):
+				is_mining = true
+				collectable.mine(delta)
+
+
+func _physics_process(delta: float) -> void:
+	# Smooth camera zoom
+	if camera != null:
+		var z: float = lerp(camera.zoom.x, target_zoom, clamp(delta * zoom_smooth_speed, 0.0, 1.0))
+		camera.zoom = Vector2(z, z)
+
+	get_input()
+	update_animations(delta)
+	check_battery(delta)
 	check_mining(delta)
 
 	move_and_slide()
