@@ -123,6 +123,7 @@ energy = 0.99
 blend_mode = 1
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=761549764]
+blend_mode = 2
 texture = ExtResource("2_slvmq")
 
 [node name="MovementAnimation" type="AnimatedSprite2D" parent="." unique_id=569069137]
