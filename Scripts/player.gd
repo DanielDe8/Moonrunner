@@ -11,10 +11,8 @@ extends CharacterBody2D
 @export var idle_battery_consumption: float = 1.0
 @export var moving_battery_consumption: float = 3.0
 @export var warp_battery_consumption: float = 10.0
-@export var m_animation_name: StringName = &"default"
 
-var battery_life: float = max_battery_life
-var near_camp: bool = false
+var battery_life = max_battery_life
 
 var motion_timer = 0.0
 var stop_timer = 0.0
@@ -22,15 +20,11 @@ var target_zoom: float = 4.0
 
 @onready var camera: Camera2D = $Camera2D
 @onready var charging_area: Area2D = $"../Camp/ChargingArea"
-@onready var m_animation: AnimatedSprite2D = $MiningAnimation
 
 
 func _ready() -> void:
 	if camera != null:
 		target_zoom = camera.zoom.x
-
-	m_animation.stop()
-	m_animation.frame = 0
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -44,14 +38,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			target_zoom = clamp(target_zoom + zoom_step, min_zoom, max_zoom)
 		elif event.keycode == KEY_MINUS or event.keycode == KEY_KP_SUBTRACT:
 			target_zoom = clamp(target_zoom - zoom_step, min_zoom, max_zoom)
-		elif event.keycode == KEY_M and not event.echo:
-			play_mining()
-
-
-func play_mining() -> void:
-	if not m_animation.is_playing():
-		m_animation.play(m_animation_name)
-				
 
 
 func get_input():
