@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmktn6edi67ph"]
 
 [ext_resource type="Script" uid="uid://bmy1034p4rapl" path="res://Scripts/collecteble_template.gd" id="1_nd5ou"]
-[ext_resource type="Texture2D" uid="uid://c0ejue8vuwrjf" path="res://Assets/planet_surface_1.png" id="2_68yr3"]
+[ext_resource type="Texture2D" uid="uid://db6qfx3nw4wwb" path="res://Assets/red_ore_1.png" id="2_1ashx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqatm"]
 size = Vector2(16, 16)
@@ -11,7 +11,7 @@ script = ExtResource("1_nd5ou")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=315519964]
 texture_filter = 1
-texture = ExtResource("2_68yr3")
+texture = ExtResource("2_1ashx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=421200293]
 shape = SubResource("RectangleShape2D_mqatm")
