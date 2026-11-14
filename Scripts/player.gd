@@ -86,11 +86,10 @@ func _physics_process(delta: float) -> void:
 	var battery_percentage = (battery_life / max_battery_life)
 	$BatteryAnimation.frame = battery_percentage * ($BatteryAnimation.sprite_frames.get_frame_count($BatteryAnimation.animation) - 1)
 
-	$"../CanvasLayer/Control/Label".text = str(battery_percentage * 100).pad_decimals(0) + "%"
-
 	if battery_percentage <= 0:
 		print("dosla ti baterka debile")
 		assert(false)
 		
+	print(battery_life)
 	
 	move_and_slide()
