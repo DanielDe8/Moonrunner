@@ -11,6 +11,8 @@ extends CharacterBody2D
 @export var idle_battery_consumption: float = 1.0
 @export var moving_battery_consumption: float = 3.0
 @export var warp_battery_consumption: float = 10.0
+@export var mining_battery_consumption: float = 20.0
+@export var is_mining = false
 
 var battery_life = max_battery_life
 
@@ -40,9 +42,19 @@ func _unhandled_input(event: InputEvent) -> void:
 			target_zoom = clamp(target_zoom - zoom_step, min_zoom, max_zoom)
 
 
-func get_input():
+func get_input() -> void:
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
+
+
+func check_mining(delta: float) -> void:
+	is_mining = false
+	
+	if Input.is_action_pressed("mine"):
+		for collectable in get_tree().get_nodes_in_group("Collectables"):
+			if collectable.overlaps_body(self):
+				is_mining = true
+				collectable.mine(delta)
 
 
 func _physics_process(delta: float) -> void:
@@ -85,10 +97,12 @@ func _physics_process(delta: float) -> void:
 	# Battery
 	if charging_area.overlaps_body(self):
 		battery_life = min(battery_life + delta * 10, max_battery_life)
-	elif velocity == Vector2.ZERO:
-		battery_life -= idle_battery_consumption * delta
 	else:
-		battery_life -= moving_battery_consumption * delta
+		battery_life -= idle_battery_consumption * delta
+		if velocity != Vector2.ZERO:
+			battery_life -= moving_battery_consumption * delta
+		if is_mining:
+			battery_life -= mining_battery_consumption * delta
 
 	var battery_percentage = (battery_life / max_battery_life)
 	$BatteryAnimation.frame = battery_percentage * ($BatteryAnimation.sprite_frames.get_frame_count($BatteryAnimation.animation) - 1)
@@ -99,5 +113,7 @@ func _physics_process(delta: float) -> void:
 	if battery_percentage <= 0.0:
 		global_position = charging_area.global_position
 		battery_life = max_battery_life
+
+	check_mining(delta)
 
 	move_and_slide()
