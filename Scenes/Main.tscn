@@ -53,6 +53,7 @@ position = Vector2(0, -24)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=651747093]
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=624100172 node_paths=PackedStringArray("player", "base")]
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -62,6 +63,7 @@ player = NodePath("../../player")
 base = NodePath("../../Camp")
 
 [node name="Dot" type="TextureRect" parent="CanvasLayer/Control" unique_id=262427518]
+z_index = 5
 texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
