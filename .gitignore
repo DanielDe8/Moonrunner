@@ -3,3 +3,5 @@
 /android/
 
 *.translatioin
+
+.DS_Store
