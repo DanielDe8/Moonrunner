@@ -106,6 +106,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_kkhfn"]
+
 [node name="Player" type="CharacterBody2D" unique_id=1788329522 groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_8r7yd")
@@ -138,3 +140,31 @@ texture_filter = 1
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_8m6qr")
 frame_progress = 0.9951284
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=100860406]
+
+[node name="UIController" type="Control" parent="HUD" unique_id=1477997607]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/UIController" unique_id=617362509]
+layout_mode = 0
+offset_left = -96.0
+offset_top = -47.0
+offset_right = 73.0
+offset_bottom = -7.0
+text = "Dosla baterka zmrde"
+tab_size = 2
+
+[node name="Label" type="Label" parent="HUD/UIController" unique_id=916916888]
+layout_mode = 0
+offset_left = -103.0
+offset_top = 35.0
+offset_right = 58.0
+offset_bottom = 58.0
+text = "Dosla baterka zmrde"
+label_settings = SubResource("LabelSettings_kkhfn")
