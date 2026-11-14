@@ -27,6 +27,7 @@ project/assembly_name="boounce"
 [global_group]
 
 Player=""
+Collectables=""
 
 [input]
 
