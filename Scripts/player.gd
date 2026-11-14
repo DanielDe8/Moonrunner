@@ -15,9 +15,14 @@ func get_input():
 func _physics_process( delta: float) -> void:
 	get_input()
 	
-	if velocity.x > 0 or velocity.y > 0:
+	# x is more important so it is higher up
+	if velocity.x > 0:
 		$MovementAnimation.play("move_right")
-	elif velocity.x < 0 or velocity.y < 0:
+	elif velocity.x < 0:
+		$MovementAnimation.play("move_left")
+	elif velocity.y < 0:
+		$MovementAnimation.play("move_right")
+	elif velocity.y > 0:
 		$MovementAnimation.play("move_left")
 	else:
 		$MovementAnimation.pause()
@@ -29,11 +34,6 @@ func _physics_process( delta: float) -> void:
 		
 		# Trigger animations and antenna tilt after start_delay
 		if motion_timer >= start_delay:
-			if velocity.x > 0 or velocity.y > 0:
-				$MovementAnimation.play("move_right")
-			elif velocity.x < 0 or velocity.y < 0:
-				$MovementAnimation.play("move_left")
-				
 			if velocity.x > 0:
 				$AntennaAnimation.frame = 0   # right
 			elif velocity.x < 0:
@@ -41,7 +41,6 @@ func _physics_process( delta: float) -> void:
 	else:
 		motion_timer = 0.0
 		stop_timer += delta
-		$MovementAnimation.pause()
 		
 		# Snap antenna back to still only after stop_delay passes
 		if stop_timer >= stop_delay:
