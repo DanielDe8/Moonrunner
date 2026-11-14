@@ -2,6 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://bsly0swvikiyv" path="res://Objects/Player.tscn" id="1_r150o"]
 [ext_resource type="Texture2D" uid="uid://u6ipfxc83v4x" path="res://Assets/icon.svg" id="2_idj7w"]
+[ext_resource type="PackedScene" uid="uid://bmktn6edi67ph" path="res://Objects/collecteble_template.tscn" id="2_kln2b"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rgh2o"]
+scenes/1/scene = ExtResource("2_kln2b")
+
+[sub_resource type="TileSet" id="TileSet_jph6x"]
+sources/0 = SubResource("TileSetScenesCollectionSource_rgh2o")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2vsi"]
 size = Vector2(129, 128)
@@ -10,6 +17,9 @@ size = Vector2(129, 128)
 
 [node name="Player" parent="." unique_id=1788329522 instance=ExtResource("1_r150o")]
 speed = 90
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1483234888]
+tile_set = SubResource("TileSet_jph6x")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1700709170]
 
