@@ -20,6 +20,8 @@ extends CharacterBody2D
 @export var mining_battery_consumption: float = 20.0
 @export var is_mining = false
 
+@export var time_to_warp_back = 3.0
+
 var battery_life = max_battery_life
 var motion_timer = 0.0
 var stop_timer = 0.0
@@ -28,11 +30,21 @@ var target_zoom: float = 4.0
 @onready var camera: Camera2D = $Camera2D
 @onready var charging_area: Area2D = $"../Camp/ChargingArea"
 
+var last_pos_array: Array[Vector2] = []
 
 func _ready() -> void:
 	if camera != null:
 		target_zoom = camera.zoom.x
+	
+	$PosSaveTimer.timeout.connect(func() -> void:
+		last_pos_array.append(global_position)
 
+		var max_positions = ceili(time_to_warp_back / $PosSaveTimer.wait_time)
+
+		while last_pos_array.size() > max_positions:
+			print(last_pos_array.pop_front())
+	)
+	
 
 ## Handles mouse wheel and +/- key camera zoom input.
 func _unhandled_input(event: InputEvent) -> void:
@@ -132,6 +144,13 @@ func _physics_process(delta: float) -> void:
 		var z: float = lerp(camera.zoom.x, target_zoom, clamp(delta * zoom_smooth_speed, 0.0, 1.0))
 		camera.zoom = Vector2(z, z)
 
+	if Input.is_action_pressed("warp"):
+		print(len(last_pos_array) >= time_to_warp_back / $PosSaveTimer.wait_time)
+		if true && battery_life > warp_battery_consumption && len(last_pos_array) >= time_to_warp_back / $PosSaveTimer.wait_time:
+			battery_life = battery_life - warp_battery_consumption
+			global_position = last_pos_array[0]
+			last_pos_array.clear()
+			
 	get_input()
 	update_animations(delta)
 	check_battery(delta)
