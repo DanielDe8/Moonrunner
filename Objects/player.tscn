@@ -109,6 +109,7 @@ animations = [{
 [node name="player" type="CharacterBody2D" unique_id=1788329522 groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_0ar0x")
+speed = 90
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=569772186]
 zoom = Vector2(4, 4)
@@ -119,7 +120,6 @@ position_smoothing_speed = 3.0
 shape = SubResource("CircleShape2D_kln2b")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2009509175]
-visible = false
 energy = 0.99
 blend_mode = 1
 
