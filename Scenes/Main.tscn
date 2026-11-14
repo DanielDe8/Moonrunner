@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://camp1234fire" path="res://Objects/base_camp.tscn" id="6_camp"]
 [ext_resource type="Script" uid="uid://nw1tyfuhfnfj" path="res://Scripts/main.gd" id="7_main"]
 [ext_resource type="FontFile" uid="uid://chnv5lwc2bn3q" path="res://Assets/Pixel12x10Mono-v1.1.0.ttf" id="8_50glp"]
-[ext_resource type="Script" uid="uid://sm4l6hgcubdm" path="res://dot_control.gd" id="8_vy5pj"]
+[ext_resource type="Script" uid="uid://sm4l6hgcubdm" path="res://Scripts/dot_control.gd" id="8_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://bpuuf55qv6sat" path="res://Objects/ore.tscn" id="9_ore"]
 [ext_resource type="Texture2D" uid="uid://c4r76lwxesyn3" path="res://Assets/dot.png" id="10_bmxlf"]
 
@@ -49,9 +49,12 @@ position = Vector2(0, -24)
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=624100172 node_paths=PackedStringArray("player", "base")]
 z_index = 2
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("8_vy5pj")
 player = NodePath("../../player")
 base = NodePath("../../Camp")
@@ -60,8 +63,8 @@ base = NodePath("../../Camp")
 z_index = 5
 texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 24.0
+offset_bottom = 24.0
 texture = ExtResource("10_bmxlf")
 stretch_mode = 4
 
