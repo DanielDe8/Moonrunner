@@ -144,12 +144,10 @@ func _physics_process(delta: float) -> void:
 		var z: float = lerp(camera.zoom.x, target_zoom, clamp(delta * zoom_smooth_speed, 0.0, 1.0))
 		camera.zoom = Vector2(z, z)
 
-	if Input.is_action_pressed("warp"):
-		print(len(last_pos_array) >= time_to_warp_back / $PosSaveTimer.wait_time)
-		if true && battery_life > warp_battery_consumption && len(last_pos_array) >= time_to_warp_back / $PosSaveTimer.wait_time:
-			battery_life = battery_life - warp_battery_consumption
-			global_position = last_pos_array[0]
-			last_pos_array.clear()
+	if Input.is_action_pressed("warp") && battery_life > warp_battery_consumption && len(last_pos_array) >= time_to_warp_back / $PosSaveTimer.wait_time:
+		battery_life = battery_life - warp_battery_consumption
+		global_position = last_pos_array[0]
+		last_pos_array.clear()
 			
 	get_input()
 	update_animations(delta)
