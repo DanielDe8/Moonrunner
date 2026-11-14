@@ -8,6 +8,7 @@ extends Area2D
 @export var max_cluster_size: int = 5
 @export var min_distance: int = 5
 @export var max_distance: int = -1
+<<<<<<< HEAD
 ## Seconds to wait after the player touches this collectable before removing it.
 @export var collect_delay: float = 1.0
 
@@ -27,4 +28,14 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.has_method("play_mining"):
 			body.play_mining()
 		await get_tree().create_timer(collect_delay).timeout
+=======
+@export var hp: float = 1.0   # seconds to wait before the ore is collected
+
+
+func mine(delta: float) -> void:
+	hp -= delta
+	
+	if hp <= 0.0:
+>>>>>>> origin/master
 		queue_free()
+		

@@ -17,6 +17,8 @@ extends CharacterBody2D
 @export var idle_battery_consumption: float = 1.0
 @export var moving_battery_consumption: float = 3.0
 @export var warp_battery_consumption: float = 10.0
+@export var mining_battery_consumption: float = 20.0
+@export var is_mining = false
 
 var battery_life = max_battery_life
 var motion_timer = 0.0
@@ -46,12 +48,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			target_zoom = clamp(target_zoom - zoom_step, min_zoom, max_zoom)
 
 
+<<<<<<< HEAD
 ## Reads directional input and sets movement velocity.
 func get_input():
+=======
+func get_input() -> void:
+>>>>>>> origin/master
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
 
 
+<<<<<<< HEAD
 func _physics_process(delta: float) -> void:
 	# Smoothly interpolate camera zoom toward target_zoom.
 	if camera != null:
@@ -61,6 +68,10 @@ func _physics_process(delta: float) -> void:
 	get_input()
 
 	# Play directional rover tread animation, or pause when stationary.
+=======
+func update_animations(delta: float) -> void:
+	# Movement animation
+>>>>>>> origin/master
 	if velocity.x > 0:
 		$MovementAnimation.play("move_right")
 	elif velocity.x < 0:
@@ -88,14 +99,29 @@ func _physics_process(delta: float) -> void:
 
 		if stop_timer >= stop_delay:
 			$AntennaAnimation.frame = 1
+		
+	# Mining animation
+	if is_mining:
+		$MiningAnimation.show()
+		$MiningAnimation.play("default")
+	else:
+		$MiningAnimation.hide()
+		$MiningAnimation.pause()
 
+<<<<<<< HEAD
 	# Recharge inside the camp's ChargingArea; otherwise drain based on idle vs moving.
+=======
+
+func check_battery(delta: float) -> void:
+>>>>>>> origin/master
 	if charging_area.overlaps_body(self):
 		battery_life = min(battery_life + delta * 10, max_battery_life)
-	elif velocity == Vector2.ZERO:
-		battery_life -= idle_battery_consumption * delta
 	else:
-		battery_life -= moving_battery_consumption * delta
+		battery_life -= idle_battery_consumption * delta
+		if velocity != Vector2.ZERO:
+			battery_life -= moving_battery_consumption * delta
+		if is_mining:
+			battery_life -= mining_battery_consumption * delta
 
 	# Update the on-rover battery sprite and HUD percentage label.
 	var battery_percentage = (battery_life / max_battery_life)
@@ -106,5 +132,27 @@ func _physics_process(delta: float) -> void:
 	if battery_percentage <= 0.0:
 		global_position = charging_area.global_position
 		battery_life = max_battery_life
+
+
+func check_mining(delta: float) -> void:
+	is_mining = false
+	
+	if Input.is_action_pressed("mine"):
+		for collectable in get_tree().get_nodes_in_group("Collectables"):
+			if collectable.overlaps_body(self):
+				is_mining = true
+				collectable.mine(delta)
+
+
+func _physics_process(delta: float) -> void:
+	# Smooth camera zoom
+	if camera != null:
+		var z: float = lerp(camera.zoom.x, target_zoom, clamp(delta * zoom_smooth_speed, 0.0, 1.0))
+		camera.zoom = Vector2(z, z)
+
+	get_input()
+	update_animations(delta)
+	check_battery(delta)
+	check_mining(delta)
 
 	move_and_slide()
