@@ -13,7 +13,6 @@ texture_filter = 1
 texture = ExtResource("2_fire")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=884422121]
-energy = 1.35
 texture = ExtResource("3_light")
 texture_scale = 1.6
 
