@@ -6,7 +6,8 @@
 [ext_resource type="Script" uid="uid://ddin3htwgf7ov" path="res://Scripts/ore_spawner.gd" id="4_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dcx1qkahlrj3e" path="res://Objects/planet_surface.tscn" id="5_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://camp1234fire" path="res://Objects/base_camp.tscn" id="6_camp"]
-[ext_resource type="Script" path="res://Scripts/main.gd" id="7_main"]
+[ext_resource type="Script" uid="uid://nw1tyfuhfnfj" path="res://Scripts/main.gd" id="7_main"]
+[ext_resource type="FontFile" uid="uid://chnv5lwc2bn3q" path="res://Assets/Pixel12x10Mono-v1.1.0.ttf" id="8_50glp"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rgh2o"]
 scenes/1/scene = ExtResource("2_kln2b")
@@ -22,6 +23,9 @@ texture = ExtResource("3_merged")
 [sub_resource type="TileSet" id="TileSet_jph6x"]
 sources/0 = SubResource("TileSetScenesCollectionSource_rgh2o")
 sources/1 = SubResource("TileSetAtlasSource_surface")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jw32o"]
+font = ExtResource("8_50glp")
 
 [node name="Node2D" type="Node2D" unique_id=1416863422]
 script = ExtResource("7_main")
@@ -41,3 +45,32 @@ position = Vector2(0, -24)
 
 [node name="player" parent="." unique_id=1788329522 instance=ExtResource("1_r150o")]
 speed = 90
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=651747093]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1068240947]
+layout_mode = 3
+anchor_left = 0.001
+anchor_top = 0.002
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.15200007
+offset_top = -0.296
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=1176293231]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1036.0
+offset_top = 601.0
+offset_right = -62.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100%"
+label_settings = SubResource("LabelSettings_jw32o")
+horizontal_alignment = 1
+vertical_alignment = 1
