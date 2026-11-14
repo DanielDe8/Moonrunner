@@ -20,6 +20,7 @@ extends CharacterBody2D
 @export var mining_battery_consumption: float = 20.0
 @export var is_mining = false
 
+var redOre: int = 0
 var battery_life = max_battery_life
 var motion_timer = 0.0
 var stop_timer = 0.0
