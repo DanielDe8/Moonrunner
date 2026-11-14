@@ -9,7 +9,7 @@ const DIRS_8: Array[Vector2i] = [
 ]
 
 ## TileSet source ID and atlas coordinates for the 4 planet surface floor variants.
-const SURFACE_SOURCE_ID: int = 1
+const SURFACE_SOURCE_ID: int = 0
 const SURFACE_TILES: Array[Vector2i] = [
 	Vector2i(0, 0),
 	Vector2i(1, 0),
@@ -32,12 +32,12 @@ const SURFACE_TILES: Array[Vector2i] = [
 ## Radius (in tiles) around the player to actually place floor tiles and ore nodes.
 @export var view_radius: int = 35
 
-@onready var tile_map: TileMapLayer = $TileMapLayer
+@onready var floor_map: TileMapLayer = $FloorMap
+@onready var ore_map: TileMapLayer = $OreMap
 @onready var camp: Node2D = $Camp
 @onready var player: CharacterBody2D = $player
 
 var _center_cell := Vector2i.ZERO
-var _ores_parent: Node2D = null
 var _last_player_cell := Vector2i(999999, 999999)
 
 ## Planned ores waiting to be instantiated when the player gets within view_radius (cell -> PackedScene).
@@ -49,14 +49,10 @@ var _placed_floor: Dictionary = {}
 
 
 func _ready() -> void:
-	if tile_map == null or camp == null or player == null:
+	if floor_map == null or ore_map == null or camp == null or player == null:
 		return
 
-	_ores_parent = Node2D.new()
-	_ores_parent.name = "Ores"
-	add_child(_ores_parent)
-
-	_center_cell = tile_map.local_to_map(tile_map.to_local(camp.global_position))
+	_center_cell = floor_map.local_to_map(floor_map.to_local(camp.global_position))
 	# Plan all ore clusters in memory (fast, no nodes or tiles created yet).
 	_plan_all_ores()
 	# Spawn only the floor tiles and ores visible around the player right now.
@@ -115,7 +111,7 @@ func _plan_cluster(ore_scene: PackedScene, start_cell: Vector2i) -> void:
 
 ## Places floor tiles and instantiates planned ores within view_radius of the player (inside spawn_radius).
 func _update_visible_area() -> void:
-	var player_cell := tile_map.local_to_map(tile_map.to_local(player.global_position))
+	var player_cell := floor_map.local_to_map(floor_map.to_local(player.global_position))
 	if player_cell == _last_player_cell:
 		return
 	_last_player_cell = player_cell
@@ -141,12 +137,12 @@ func _update_visible_area() -> void:
 			var cell := Vector2i(x, y)
 			if not _placed_floor.has(cell):
 				_placed_floor[cell] = true
-				tile_map.set_cell(cell, SURFACE_SOURCE_ID, SURFACE_TILES[randi() % 4])
+				floor_map.set_cell(cell, SURFACE_SOURCE_ID, SURFACE_TILES[randi() % 4])
 
 			if _pending_ores.has(cell):
 				var ore_scene: PackedScene = _pending_ores[cell]
 				_pending_ores.erase(cell)
 				var ore := ore_scene.instantiate() as Node2D
 				if ore != null:
-					_ores_parent.add_child(ore)
-					ore.global_position = tile_map.to_global(tile_map.map_to_local(cell))
+					ore_map.add_child(ore)
+					ore.global_position = ore_map.to_global(ore_map.map_to_local(cell))
