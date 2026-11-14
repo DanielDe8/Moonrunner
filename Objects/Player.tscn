@@ -3,9 +3,19 @@
 [ext_resource type="Script" uid="uid://beck1r130srfd" path="res://Scripts/player.gd" id="1_8r7yd"]
 [ext_resource type="Texture2D" uid="uid://u6ipfxc83v4x" path="res://Assets/icon.svg" id="2_n6db0"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s0lj0"]
+radius = 62.0
+height = 124.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1788329522]
 motion_mode = 1
 script = ExtResource("1_8r7yd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=439105771]
 texture = ExtResource("2_n6db0")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=569772186]
+position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1862852225]
+shape = SubResource("CapsuleShape2D_s0lj0")
