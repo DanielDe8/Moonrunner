@@ -9,6 +9,7 @@ size = Vector2(129, 128)
 [node name="Node2D" type="Node2D" unique_id=1416863422]
 
 [node name="Player" parent="." unique_id=1788329522 instance=ExtResource("1_r150o")]
+speed = 90
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1700709170]
 
