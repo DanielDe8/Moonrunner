@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://camp1234fire" path="res://Objects/base_camp.tscn" id="6_camp"]
 [ext_resource type="Script" uid="uid://nw1tyfuhfnfj" path="res://Scripts/main.gd" id="7_main"]
 [ext_resource type="FontFile" uid="uid://chnv5lwc2bn3q" path="res://Assets/Pixel12x10Mono-v1.1.0.ttf" id="8_50glp"]
+[ext_resource type="PackedScene" path="res://Objects/Ores/ore.tscn" id="9_ore"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rgh2o"]
 scenes/1/scene = ExtResource("2_kln2b")
@@ -30,6 +31,7 @@ font_size = 30
 
 [node name="Node2D" type="Node2D" unique_id=1416863422]
 script = ExtResource("7_main")
+spawnable_objects = Array[PackedScene]([ExtResource("9_ore")])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1483234888]
 texture_filter = 1

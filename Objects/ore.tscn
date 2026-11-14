@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://crjactfct5hoq"]
 
 [ext_resource type="Script" path="res://Scripts/ore.gd" id="1_ore"]
 [ext_resource type="Texture2D" uid="uid://db6qfx3nw4wwb" path="res://Assets/red_ore_1.png" id="2_tex"]
@@ -6,12 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ore"]
 size = Vector2(16, 16)
 
-[node name="Ore" type="Area2D" groups=["Collectables"]]
+[node name="Ore" type="Area2D" unique_id=520424532 groups=["Collectables"]]
 script = ExtResource("1_ore")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1123076211]
 texture_filter = 1
 texture = ExtResource("2_tex")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1930961763]
 shape = SubResource("RectangleShape2D_ore")
