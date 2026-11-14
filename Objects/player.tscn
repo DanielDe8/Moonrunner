@@ -16,6 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://drx4yktp4a2os" path="res://Assets/battery-5.png" id="14_g1u4f"]
 [ext_resource type="Texture2D" uid="uid://jg6lfje6nic1" path="res://Assets/battery-6.png" id="15_vy1ne"]
 [ext_resource type="Texture2D" uid="uid://k8b5t408japk" path="res://Assets/battery-7.png" id="16_qsaej"]
+[ext_resource type="Texture2D" uid="uid://ut7so6u4gpn0" path="res://Assets/mining_animation_1.png" id="17_1sbjj"]
+[ext_resource type="Texture2D" uid="uid://b0yp0pek6h5sg" path="res://Assets/mining_animation_2.png" id="18_tvmpb"]
+[ext_resource type="Texture2D" uid="uid://rby30fherb7y" path="res://Assets/mining_animation_3.png" id="19_yxlei"]
+[ext_resource type="Texture2D" uid="uid://bm5hkca2n50wb" path="res://Assets/mining_animation_4.png" id="20_ctpi4"]
+[ext_resource type="Texture2D" uid="uid://018spkppgsga" path="res://Assets/mining_animation_5.png" id="21_gurtw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kln2b"]
 radius = 8.0
@@ -106,6 +111,29 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_uqjsr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_1sbjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_tvmpb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_yxlei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_ctpi4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_gurtw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="player" type="CharacterBody2D" unique_id=1788329522 groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_0ar0x")
@@ -141,3 +169,8 @@ texture_filter = 1
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_8m6qr")
 frame_progress = 0.9951284
+
+[node name="MiningAnimation" type="AnimatedSprite2D" parent="." unique_id=1348643251]
+texture_filter = 1
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_uqjsr")
