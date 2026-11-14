@@ -32,6 +32,7 @@ font_size = 30
 
 [node name="Node2D" type="Node2D" unique_id=1416863422]
 script = ExtResource("7_main")
+spawnable_objects = Array[PackedScene]([ExtResource("9_ore")])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1483234888]
 texture_filter = 1
