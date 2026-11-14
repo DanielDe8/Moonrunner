@@ -9,6 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://cm0jt7nm55aro" path="res://Assets/atenna_r.png" id="7_qwt6c"]
 [ext_resource type="Texture2D" uid="uid://dkmrdkra85pwk" path="res://Assets/antenna_s.png" id="8_ivlea"]
 [ext_resource type="Texture2D" uid="uid://8nrdp6qmmaj8" path="res://Assets/antenna_l.png" id="9_0ryu0"]
+[ext_resource type="Texture2D" uid="uid://bqehiqpovrri1" path="res://Assets/battery-1.png" id="10_cut1y"]
+[ext_resource type="Texture2D" uid="uid://b0mvcl4qhlnth" path="res://Assets/battery-2.png" id="11_2qdoy"]
+[ext_resource type="Texture2D" uid="uid://4kx7twj2j6tr" path="res://Assets/battery-3.png" id="12_dmq7b"]
+[ext_resource type="Texture2D" uid="uid://cxabubq1r87c6" path="res://Assets/battery-4.png" id="13_kwjl5"]
+[ext_resource type="Texture2D" uid="uid://drx4yktp4a2os" path="res://Assets/battery-5.png" id="14_g1u4f"]
+[ext_resource type="Texture2D" uid="uid://jg6lfje6nic1" path="res://Assets/battery-6.png" id="15_vy1ne"]
+[ext_resource type="Texture2D" uid="uid://k8b5t408japk" path="res://Assets/battery-7.png" id="16_qsaej"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kln2b"]
 radius = 8.0
@@ -67,6 +74,38 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_8m6qr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_cut1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2qdoy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dmq7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_kwjl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_g1u4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_vy1ne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_qsaej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_qsaej")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="player" type="CharacterBody2D" unique_id=1788329522 groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_0ar0x")
@@ -92,3 +131,9 @@ animation = &"move_left"
 [node name="AntennaAnimation" type="AnimatedSprite2D" parent="." unique_id=387810847]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kkhfn")
+
+[node name="BatteryAnimation" type="AnimatedSprite2D" parent="." unique_id=27852291]
+texture_filter = 1
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_8m6qr")
+frame_progress = 0.9951284
