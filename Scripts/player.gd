@@ -20,6 +20,7 @@ var stop_timer = 0.0
 var target_zoom: float = 4.0
 
 @onready var camera: Camera2D = $Camera2D
+@onready var charging_area: Area2D = $"../Camp/ChargingArea"
 
 func _ready() -> void:
 	if camera != null:
@@ -77,8 +78,10 @@ func _physics_process(delta: float) -> void:
 
 		if stop_timer >= stop_delay:
 			$AntennaAnimation.frame = 1
-
-	if velocity == Vector2.ZERO:
+	
+	if charging_area.overlaps_body(self):
+		battery_life = min(battery_life + delta * 10, max_battery_life)
+	elif velocity == Vector2.ZERO:
 		battery_life -= idle_battery_consumption * delta
 	else:
 		battery_life -= moving_battery_consumption * delta
@@ -86,10 +89,10 @@ func _physics_process(delta: float) -> void:
 	var battery_percentage = (battery_life / max_battery_life)
 	$BatteryAnimation.frame = battery_percentage * ($BatteryAnimation.sprite_frames.get_frame_count($BatteryAnimation.animation) - 1)
 
-	if battery_percentage <= 0:
-		print("dosla ti baterka debile")
-		assert(false)
-		
-	print(battery_life)
+	$"../CanvasLayer/Control/Label".text = str(battery_percentage * 100).pad_decimals(0) + "%"
+
+	if battery_percentage <= 0.0:
+		position = charging_area.position
+		battery_life = max_battery_life
 	
 	move_and_slide()
