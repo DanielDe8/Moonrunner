@@ -55,7 +55,13 @@ func check_mining(delta: float) -> void:
 			if collectable.overlaps_body(self):
 				is_mining = true
 				collectable.mine(delta)
-
+				
+	if is_mining:
+		$MiningAnimation.show()
+		$MiningAnimation.play("default")
+	else:
+		$MiningAnimation.hide()
+		$MiningAnimation.pause()
 
 func _physics_process(delta: float) -> void:
 	# Smooth camera zoom
