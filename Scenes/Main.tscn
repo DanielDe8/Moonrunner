@@ -9,8 +9,9 @@
 [ext_resource type="Script" uid="uid://nw1tyfuhfnfj" path="res://Scripts/main.gd" id="7_main"]
 [ext_resource type="FontFile" uid="uid://chnv5lwc2bn3q" path="res://Assets/Pixel12x10Mono-v1.1.0.ttf" id="8_50glp"]
 [ext_resource type="Script" uid="uid://sm4l6hgcubdm" path="res://Scripts/dot_control.gd" id="8_vy5pj"]
-[ext_resource type="PackedScene" uid="uid://crjactfct5hoq" path="res://Objects/ore.tscn" id="9_ore"]
+[ext_resource type="PackedScene" uid="uid://bpuuf55qv6sat" path="res://Objects/ore.tscn" id="9_ore"]
 [ext_resource type="Texture2D" uid="uid://c4r76lwxesyn3" path="res://Assets/dot.png" id="10_bmxlf"]
+[ext_resource type="PackedScene" path="res://Objects/scrap.tscn" id="11_scrap"]
 [ext_resource type="Texture2D" uid="uid://bj3pmyock1vy5" path="res://Assets/red_ore_icon.png" id="12_grg3l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_surface"]
@@ -27,6 +28,7 @@ sources/0 = SubResource("TileSetAtlasSource_surface")
 scenes/1/scene = ExtResource("9_ore")
 scenes/2/scene = ExtResource("2_kln2b")
 scenes/3/scene = ExtResource("5_pbw6q")
+scenes/4/scene = ExtResource("11_scrap")
 
 [sub_resource type="TileSet" id="TileSet_ores"]
 sources/0 = SubResource("TileSetScenesCollectionSource_rgh2o")
@@ -37,7 +39,7 @@ font_size = 30
 
 [node name="Node2D" type="Node2D" unique_id=1416863422]
 script = ExtResource("7_main")
-ore_scenes = Array[PackedScene]([ExtResource("9_ore")])
+ore_scenes = Array[PackedScene]([ExtResource("9_ore"), ExtResource("11_scrap")])
 ore_cluster_count = 5000
 
 [node name="FloorMap" type="TileMapLayer" parent="." unique_id=1483234888]

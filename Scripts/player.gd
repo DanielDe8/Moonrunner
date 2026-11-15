@@ -34,6 +34,7 @@ var hud_string = "../CanvasLayer"
 var last_pos_array: Array[Vector2] = []
 
 var red_ore_count: int = 0
+var scrap_count: int = 0
 
 func _ready() -> void:
 	if camera != null:
