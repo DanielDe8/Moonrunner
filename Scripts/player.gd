@@ -113,7 +113,6 @@ func update_animations(delta: float) -> void:
 	# Emit tread dust particles only while the rover is moving.
 	if has_node("GPUParticles2D"):
 		$GPUParticles2D.emitting = (velocity != Vector2.ZERO)
-
 	# Mining animation & red spark/chip particles
 	if has_node("MiningParticles"):
 		$MiningParticles.emitting = is_mining
@@ -190,7 +189,11 @@ func update_hud() -> void:
 
 
 func craft():
-	print("crafting %d" % crafting_selection)
+	if(crafting_selection == 0):
+		max_battery_life += 50
+	if(crafting_selection == 1):
+		$PointLight2D.texture_scale += 0.25
+
 
 
 func _physics_process(delta: float) -> void:
