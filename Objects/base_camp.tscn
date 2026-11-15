@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dw7ieu3wpucw0" path="res://Scripts/base_camp.gd" id="2_script"]
 [ext_resource type="Texture2D" uid="uid://dlpd1ryoc6wrk" path="res://Assets/light_texture.png" id="3_light"]
 [ext_resource type="Texture2D" uid="uid://epp3vh7elfm2" path="res://Assets/charging_station_1.png" id="4_0imks"]
+[ext_resource type="Texture2D" uid="uid://crj2gyc8gl3fe" path="res://Assets/crafting_1.png" id="5_63ump"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_s0lj0"]
 points = PackedVector2Array(12, 7, -12, 7, -12, -2, -9, -5, 9, -5, 12, -2)
@@ -56,3 +57,9 @@ position = Vector2(0, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CraftingArea" unique_id=956253749]
 shape = SubResource("RectangleShape2D_s0lj0")
+
+[node name="Sprite2D" type="Sprite2D" parent="CraftingArea" unique_id=884481579]
+texture_filter = 1
+position = Vector2(0, 1.0000005)
+scale = Vector2(0.74999994, 0.75000006)
+texture = ExtResource("5_63ump")
