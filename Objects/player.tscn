@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bsly0swvikiyv"]
 
 [ext_resource type="Script" uid="uid://beck1r130srfd" path="res://Scripts/player.gd" id="1_0ar0x"]
+[ext_resource type="Script" uid="uid://b8viks3ojclkb" path="res://Objects/camera_2d.gd" id="2_ry78x"]
 [ext_resource type="Texture2D" uid="uid://dlpd1ryoc6wrk" path="res://Assets/light_texture.png" id="2_slvmq"]
 [ext_resource type="Texture2D" uid="uid://bib3dfsyttpt8" path="res://Assets/rover_1.png" id="3_ng3n2"]
 [ext_resource type="Texture2D" uid="uid://b5yea7678idhe" path="res://Assets/rover_2.png" id="4_f7am4"]
@@ -231,6 +232,7 @@ speed = 90
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
+script = ExtResource("2_ry78x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1862852225]
 z_index = 2
