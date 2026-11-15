@@ -196,7 +196,9 @@ func update_hud() -> void:
 				red_ore_count -= crafting_prices[crafting_selection][1]
 				craft()
 	else:
-		crafting_selection = -1
+		if crafting_selection == 2:
+			crafting_selection = -1
+			
 		get_node("%s/HUD/RocketLabel" % hud_string).hide()
 		get_node("%s/HUD/ConfirmLabel" % hud_string).hide()
 		
