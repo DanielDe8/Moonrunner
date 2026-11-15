@@ -122,7 +122,7 @@ func check_battery(delta: float) -> void:
 	# Recharge inside the camp's ChargingArea; otherwise drain based on idle, moving, and mining.
 	if charging_area.overlaps_body(self):
 		battery_life = min(battery_life + delta * 20, max_battery_life)
-	else:
+	elif not $"../Camp/Area2D".overlaps_body(self):
 		battery_life -= idle_battery_consumption * delta
 		if velocity != Vector2.ZERO:
 			battery_life -= moving_battery_consumption * delta
