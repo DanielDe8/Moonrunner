@@ -29,8 +29,11 @@ var target_zoom: float = 4.0
 
 @onready var camera: Camera2D = $Camera2D
 @onready var charging_area: Area2D = $"../Camp/ChargingArea"
+var hud_string = "../CanvasLayer"
 
 var last_pos_array: Array[Vector2] = []
+
+var red_ore_cound = 0
 
 func _ready() -> void:
 	if camera != null:
@@ -120,7 +123,8 @@ func check_battery(delta: float) -> void:
 	# Update the on-rover battery sprite and HUD percentage label.
 	var battery_percentage = (battery_life / max_battery_life)
 	$BatteryAnimation.frame = battery_percentage * ($BatteryAnimation.sprite_frames.get_frame_count($BatteryAnimation.animation) - 1)
-	$"../CanvasLayer/HUD/Label".text = str(battery_percentage * 100).pad_decimals(0) + "%"
+
+	get_node("%s/HUD/BatteryLabel" % hud_string).text = str(battery_percentage * 100).pad_decimals(0) + "%"
 
 	# Respawn back at the charging area with a full battery when depleted.
 	if battery_percentage <= 0.0:
@@ -138,6 +142,10 @@ func check_mining(delta: float) -> void:
 				collectable.mine(delta)
 
 
+func update_hud() -> void:
+	pass
+
+
 func _physics_process(delta: float) -> void:
 	# Smooth camera zoom
 	if camera != null:
@@ -153,5 +161,6 @@ func _physics_process(delta: float) -> void:
 	update_animations(delta)
 	check_battery(delta)
 	check_mining(delta)
+	update_hud()
 
 	move_and_slide()

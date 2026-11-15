@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bpuuf55qv6sat"]
+[gd_scene format=3 uid="uid://crjactfct5hoq"]
 
 [ext_resource type="Script" uid="uid://duq0edonbilct" path="res://Scripts/collectable.gd" id="1_ore"]
 [ext_resource type="Texture2D" uid="uid://db6qfx3nw4wwb" path="res://Assets/red_ore_1.png" id="2_tex"]
