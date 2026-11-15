@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b1uar3madmgg0"]
+
+[ext_resource type="Script" uid="uid://ch62pspcc7ch2" path="res://Objects/loadscreen.gd" id="1_ljcd0"]
+[ext_resource type="FontFile" uid="uid://cyudaeo5xrvhj" path="res://Assets/Pixel12x10-v1.1.0.ttf" id="2_44xy8"]
+[ext_resource type="Script" uid="uid://da6et78fqctu0" path="res://Scripts/rich_text_label.gd" id="3_cas1m"]
+
+[node name="Main Screen" type="Node2D" unique_id=1754760791]
+script = ExtResource("1_ljcd0")
+
+[node name="Control" type="Control" parent="." unique_id=1325675825]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1204129689]
+layout_mode = 0
+offset_top = 301.0
+offset_right = 1153.0
+offset_bottom = 650.0
+
+[node name="GoButton" type="Button" parent="Control/VBoxContainer" unique_id=614191751]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_44xy8")
+theme_override_font_sizes/font_size = 42
+text = "Go"
+
+[node name="Button" type="Button" parent="Control/VBoxContainer" unique_id=790701847]
+visible = false
+custom_minimum_size = Vector2(0, -20.022)
+layout_mode = 2
+text = "Credits"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=137156030]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=467128066]
+offset_left = 112.0
+offset_top = 192.0
+offset_right = 1048.0
+offset_bottom = 280.0
+theme_override_font_sizes/normal_font_size = 80
+theme_override_font_sizes/bold_font_size = 80
+theme_override_font_sizes/bold_italics_font_size = 80
+theme_override_font_sizes/italics_font_size = 80
+theme_override_font_sizes/mono_font_size = 80
+bbcode_enabled = true
+horizontal_alignment = 1
+script = ExtResource("3_cas1m")
