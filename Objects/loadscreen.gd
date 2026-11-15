@@ -6,7 +6,7 @@ func _ready() -> void:
 
 func _on_go_pressed() -> void:
 	print("GO button pressed")
-	get_tree().change_scene_to_file.call_deferred("res://Objects/Main.tscn")
+	get_tree().change_scene_to_file.call_deferred("res://Scenes/Main.tscn")
 
 #func _on_credits_pressed() -> void:
 	#print("Credits button pressed")
