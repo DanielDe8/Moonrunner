@@ -40,6 +40,10 @@ var red_ore_count: int = 0
 var scrap_count: int = 0
 
 var crafting_selection = -1
+var crafting_prices = [
+	[5, 15],
+	[20, 10]
+]
 
 func _ready() -> void:
 	if camera != null:
@@ -157,7 +161,6 @@ func check_mining(delta: float) -> void:
 
 
 func update_hud() -> void:
-	
 	if $"../Camp/CraftingArea".overlaps_body(self):
 		get_node("%s/HUD/CraftLabel" % hud_string).show()
 		shown_crafting = true
@@ -171,8 +174,8 @@ func update_hud() -> void:
 		shown_crafting = false
 		crafting_selection = -1
 		
-	get_node("%s/HUD/RedOreLabel" % hud_string).text = str(red_ore_count)
-	get_node("%s/HUD/ScrapLabel" % hud_string).text = str(scrap_count) + ""
+	get_node("%s/HUD/RedOreLabel" % hud_string).text = str(red_ore_count) + (" -" + str(crafting_prices[crafting_selection][1]) if crafting_selection != -1 else "")
+	get_node("%s/HUD/ScrapLabel" % hud_string).text = str(scrap_count) + (" -" + str(crafting_prices[crafting_selection][0]) if crafting_selection != -1 else "")
 
 
 func _physics_process(delta: float) -> void:
