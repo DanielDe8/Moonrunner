@@ -19,6 +19,7 @@ extends CharacterBody2D
 @export var warp_battery_consumption: float = 10.0
 @export var mining_battery_consumption: float = 20.0
 @export var is_mining = false
+@export var shown_crafting = false
 
 @export var time_to_warp_back = 3.0
 
@@ -35,6 +36,8 @@ var last_pos_array: Array[Vector2] = []
 
 var red_ore_count: int = 0
 var scrap_count: int = 0
+
+var crafting_selection = -1
 
 func _ready() -> void:
 	if camera != null:
@@ -152,8 +155,22 @@ func check_mining(delta: float) -> void:
 
 
 func update_hud() -> void:
+	
+	if $"../Camp/CraftingArea".overlaps_body(self):
+		get_node("%s/HUD/CraftLabel" % hud_string).show()
+		shown_crafting = true
+		
+		if Input.is_action_just_pressed("1"):
+			crafting_selection = 0
+		elif Input.is_action_just_pressed("2"):
+			crafting_selection = 1
+	else:
+		get_node("%s/HUD/CraftLabel" % hud_string).hide()
+		shown_crafting = false
+		crafting_selection = -1
+		
 	get_node("%s/HUD/RedOreLabel" % hud_string).text = str(red_ore_count)
-	get_node("%s/HUD/ScrapLabel" % hud_string).text = str(scrap_count)
+	get_node("%s/HUD/ScrapLabel" % hud_string).text = str(scrap_count) + ""
 
 
 func _physics_process(delta: float) -> void:
@@ -166,14 +183,6 @@ func _physics_process(delta: float) -> void:
 		battery_life = battery_life - warp_battery_consumption
 		global_position = last_pos_array[0]
 		last_pos_array.clear()
-		
-	if $"../Camp/CraftingArea".overlaps_body(self):
-		get_node("%s/HUD/CraftLabel" % hud_string).show()
-		
-		if Input.is_action_just_pressed("craft"):
-			print("craft")
-	else:
-		get_node("%s/HUD/CraftLabel" % hud_string).hide()
 			
 	get_input()
 	update_animations(delta)

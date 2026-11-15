@@ -154,15 +154,31 @@ offset_bottom = -89.29407
 text = "0"
 label_settings = SubResource("LabelSettings_jw32o")
 
-[node name="CraftLabel" type="Label" parent="CanvasLayer/HUD" unique_id=830239607]
-visible = false
+[node name="CraftLabel" type="Control" parent="CanvasLayer/HUD" unique_id=2072832110]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="1" type="Label" parent="CanvasLayer/HUD/CraftLabel" unique_id=830239607]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.001
 anchor_bottom = 1.0020001
-offset_left = 720.0
+offset_left = 296.0
 offset_top = 24.0
-offset_right = -26.151001
-offset_bottom = -593.29407
-text = "Press \"C\" to craft"
+offset_right = 875.96
+offset_bottom = 15.919998
+text = "Press 1 to upgrade battery"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="2" type="Label" parent="CanvasLayer/HUD/CraftLabel" unique_id=242099953]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.001
+anchor_bottom = 1.0020001
+offset_left = 296.0
+offset_top = 64.0
+offset_right = 1044.96
+offset_bottom = 55.92
+text = "Press 2 to craft extra battery pack"
 label_settings = SubResource("LabelSettings_jw32o")
