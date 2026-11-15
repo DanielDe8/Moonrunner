@@ -3,10 +3,10 @@ extends Node2D
 @onready var ore_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # Your ore tracking variable
-var ores_mined: int = 0:
-	set(value):
-		ores_mined = value
-		_update_ore_visual()
+var ores_mined: int = 60
+##	set(value):
+##		ores_mined = value
+##		_update_ore_visual()
 
 func _ready() -> void:
 	# Stop the animation from automatically playing/looping
