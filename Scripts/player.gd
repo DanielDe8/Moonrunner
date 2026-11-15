@@ -153,6 +153,7 @@ func check_mining(delta: float) -> void:
 
 func update_hud() -> void:
 	get_node("%s/HUD/RedOreLabel" % hud_string).text = str(red_ore_count)
+	get_node("%s/HUD/ScrapLabel" % hud_string).text = str(scrap_count)
 
 
 func _physics_process(delta: float) -> void:
