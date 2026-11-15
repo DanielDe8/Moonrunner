@@ -166,6 +166,14 @@ func _physics_process(delta: float) -> void:
 		battery_life = battery_life - warp_battery_consumption
 		global_position = last_pos_array[0]
 		last_pos_array.clear()
+		
+	if $"../Camp/CraftingArea".overlaps_body(self):
+		get_node("%s/HUD/CraftLabel" % hud_string).show()
+		
+		if Input.is_action_just_pressed("craft"):
+			print("craft")
+	else:
+		get_node("%s/HUD/CraftLabel" % hud_string).hide()
 			
 	get_input()
 	update_animations(delta)

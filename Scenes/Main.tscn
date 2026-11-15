@@ -12,8 +12,9 @@
 [ext_resource type="Script" uid="uid://sm4l6hgcubdm" path="res://Scripts/dot_control.gd" id="8_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://crjactfct5hoq" path="res://Objects/ore.tscn" id="9_ore"]
 [ext_resource type="Texture2D" uid="uid://c4r76lwxesyn3" path="res://Assets/dot.png" id="10_bmxlf"]
-[ext_resource type="PackedScene" path="res://Objects/scrap.tscn" id="11_scrap"]
+[ext_resource type="PackedScene" uid="uid://bb3r36fsf0a1b" path="res://Objects/scrap.tscn" id="11_scrap"]
 [ext_resource type="Texture2D" uid="uid://bj3pmyock1vy5" path="res://Assets/red_ore_icon.png" id="12_grg3l"]
+[ext_resource type="Texture2D" uid="uid://rvgsajtp11mf" path="res://Assets/scrap_icon.png" id="15_h1m7h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_surface"]
 texture = ExtResource("3_merged")
@@ -123,6 +124,15 @@ offset_right = 105.0
 offset_bottom = 615.0
 texture = ExtResource("12_grg3l")
 
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HUD" unique_id=829492204]
+texture_filter = 1
+layout_mode = 0
+offset_left = 48.0
+offset_top = 512.0
+offset_right = 104.0
+offset_bottom = 568.0
+texture = ExtResource("15_h1m7h")
+
 [node name="RedOreLabel" type="Label" parent="CanvasLayer/HUD" unique_id=460916015]
 layout_mode = 1
 anchors_preset = -1
@@ -140,9 +150,22 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.001
 anchor_bottom = 1.0020001
-offset_left = 96.0
+offset_left = 104.0
 offset_top = 528.0
-offset_right = -888.151
+offset_right = -880.151
 offset_bottom = -89.29407
 text = "0"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="CraftLabel" type="Label" parent="CanvasLayer/HUD" unique_id=830239607]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.001
+anchor_bottom = 1.0020001
+offset_left = 720.0
+offset_top = 24.0
+offset_right = -26.151001
+offset_bottom = -593.29407
+text = "Press \"C\" to craft"
 label_settings = SubResource("LabelSettings_jw32o")
