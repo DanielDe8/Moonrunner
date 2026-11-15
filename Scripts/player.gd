@@ -97,6 +97,10 @@ func update_animations(delta: float) -> void:
 		if stop_timer >= stop_delay:
 			$AntennaAnimation.frame = 1
 		
+	# Emit tread dust particles only while the rover is moving.
+	if has_node("GPUParticles2D"):
+		$GPUParticles2D.emitting = (velocity != Vector2.ZERO)
+
 	# Mining animation
 	if is_mining:
 		$MiningAnimation.show()

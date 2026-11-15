@@ -165,6 +165,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_dust"]
+colors = PackedColorArray(0.92, 0.78, 0.58, 1, 0.92, 0.78, 0.58, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dust"]
+gradient = SubResource("Gradient_dust")
+
+[sub_resource type="Gradient" id="Gradient_white"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dust_px"]
+gradient = SubResource("Gradient_white")
+width = 2
+height = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g78ft"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(6, 2, 1)
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 12.0
+initial_velocity_max = 24.0
+gravity = Vector3(0, 0, 0)
+damping_min = 25.0
+damping_max = 40.0
+scale_min = 0.5
+scale_max = 1.0
+color_ramp = SubResource("GradientTexture1D_dust")
+
 [node name="player" type="CharacterBody2D" unique_id=1788329522 groups=["Player"]]
 z_index = 10
 motion_mode = 1
@@ -186,12 +215,6 @@ blend_mode = 1
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=761549764]
 blend_mode = 2
 texture = ExtResource("2_slvmq")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="PointLight2D" unique_id=1597764570]
-texture_filter = 1
-position = Vector2(7, 7)
-sub_emitter = NodePath(".")
-texture = ExtResource("10_cut1y")
 
 [node name="MovementAnimation" type="AnimatedSprite2D" parent="." unique_id=569069137]
 texture_filter = 1
@@ -222,3 +245,14 @@ sprite_frames = SubResource("SpriteFrames_g4kt2")
 [node name="PosSaveTimer" type="Timer" parent="." unique_id=1346466802]
 wait_time = 0.5
 autostart = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1597764570]
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 6)
+emitting = false
+amount = 24
+texture = SubResource("GradientTexture2D_dust_px")
+lifetime = 0.5
+local_coords = false
+process_material = SubResource("ParticleProcessMaterial_g78ft")

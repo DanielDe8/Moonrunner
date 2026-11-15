@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://nw1tyfuhfnfj" path="res://Scripts/main.gd" id="7_main"]
 [ext_resource type="FontFile" uid="uid://chnv5lwc2bn3q" path="res://Assets/Pixel12x10Mono-v1.1.0.ttf" id="8_50glp"]
 [ext_resource type="Script" uid="uid://sm4l6hgcubdm" path="res://Scripts/dot_control.gd" id="8_vy5pj"]
-[ext_resource type="PackedScene" uid="uid://crjactfct5hoq" path="res://Objects/ore.tscn" id="9_ore"]
+[ext_resource type="PackedScene" uid="uid://bpuuf55qv6sat" path="res://Objects/ore.tscn" id="9_ore"]
 [ext_resource type="Texture2D" uid="uid://c4r76lwxesyn3" path="res://Assets/dot.png" id="10_bmxlf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_surface"]
