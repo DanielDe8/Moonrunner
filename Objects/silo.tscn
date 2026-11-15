@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dbd8nvvikbvr0"]
 
+[ext_resource type="Script" uid="uid://b5os5pi4a6d1k" path="res://silo_manager.gd" id="1_sdkc4"]
 [ext_resource type="Texture2D" uid="uid://c1ok58og22avp" path="res://Assets/base_silo_0.png" id="1_4cvgo"]
 [ext_resource type="Texture2D" uid="uid://bdp8me1vghx23" path="res://Assets/base_silo_1.png" id="2_sdkc4"]
 [ext_resource type="Texture2D" uid="uid://d1dmuc6nbh3o0" path="res://Assets/base_silo_2.png" id="3_yq5j8"]

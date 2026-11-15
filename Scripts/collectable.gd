@@ -8,13 +8,14 @@ extends Area2D
 @export var max_distance: int = -1
 @export var hp: float = 1.0
 
-@onready var player: CharacterBody2D = $"../../player"
+@onready var player: Node = get_tree().get_first_node_in_group("Player")
 
 
 func mine(delta: float) -> void:
 	hp -= delta
-	
+
 	if hp <= 0.0:
-		player.red_ore_count += 1
+		if player != null and "red_ore_count" in player:
+			player.red_ore_count += 1
 		queue_free()
 		

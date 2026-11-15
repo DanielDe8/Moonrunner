@@ -33,7 +33,7 @@ var hud_string = "../CanvasLayer"
 
 var last_pos_array: Array[Vector2] = []
 
-var red_ore_cound = 0
+var red_ore_count: int = 0
 
 func _ready() -> void:
 	if camera != null:
@@ -104,7 +104,9 @@ func update_animations(delta: float) -> void:
 	if has_node("GPUParticles2D"):
 		$GPUParticles2D.emitting = (velocity != Vector2.ZERO)
 
-	# Mining animation
+	# Mining animation & red spark/chip particles
+	if has_node("MiningParticles"):
+		$MiningParticles.emitting = is_mining
 	if is_mining:
 		$MiningAnimation.show()
 		$MiningAnimation.play("default")
