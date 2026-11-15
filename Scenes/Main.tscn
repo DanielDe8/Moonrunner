@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://sm4l6hgcubdm" path="res://Scripts/dot_control.gd" id="8_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://crjactfct5hoq" path="res://Objects/ore.tscn" id="9_ore"]
 [ext_resource type="Texture2D" uid="uid://c4r76lwxesyn3" path="res://Assets/dot.png" id="10_bmxlf"]
-[ext_resource type="PackedScene" path="res://Objects/scrap.tscn" id="11_scrap"]
+[ext_resource type="PackedScene" uid="uid://bb3r36fsf0a1b" path="res://Objects/scrap.tscn" id="11_scrap"]
 [ext_resource type="Texture2D" uid="uid://bj3pmyock1vy5" path="res://Assets/red_ore_icon.png" id="12_grg3l"]
 [ext_resource type="Texture2D" uid="uid://rvgsajtp11mf" path="res://Assets/scrap_icon.png" id="15_h1m7h"]
 
@@ -161,7 +161,6 @@ text = "0"
 label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="CraftLabel" type="Control" parent="CanvasLayer/HUD" unique_id=2072832110]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -171,11 +170,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.001
 anchor_bottom = 1.0020001
-offset_left = 504.0
-offset_top = 24.0
-offset_right = 1083.96
-offset_bottom = 15.919998
-text = "1 - upgrade battery"
+offset_left = 281.0
+offset_top = 522.0
+offset_right = 860.96
+offset_bottom = 513.92
+text = "1 - upgraded battery"
 label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="2" type="Label" parent="CanvasLayer/HUD/CraftLabel" unique_id=242099953]
@@ -183,11 +182,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.001
 anchor_bottom = 1.0020001
-offset_left = 504.0
-offset_top = 64.0
-offset_right = 1252.96
-offset_bottom = 55.92
-text = "2 - bigger light emiter"
+offset_left = 278.0
+offset_top = 568.0
+offset_right = 765.96
+offset_bottom = 559.92
+text = "2 - bigger light"
 label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="ConfirmLabel" type="Label" parent="CanvasLayer/HUD/CraftLabel" unique_id=1076705632]
