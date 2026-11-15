@@ -1,19 +1,19 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bb3r36fsf0a1b"]
 
 [ext_resource type="Script" uid="uid://duq0edonbilct" path="res://Scripts/collectable.gd" id="1_collectable"]
-[ext_resource type="Texture2D" uid="uid://cjbvdp2su5ohp" path="res://Assets/notexture.png" id="2_tex"]
+[ext_resource type="Texture2D" uid="uid://rxjpsuok5k2" path="res://Assets/scrap_1.png" id="2_v2qwe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_scrap"]
 size = Vector2(16, 16)
 
-[node name="Scrap" type="Area2D" groups=["Collectables"]]
+[node name="Scrap" type="Area2D" unique_id=1542981964 groups=["Collectables"]]
 script = ExtResource("1_collectable")
 stat_name = "scrap_count"
 require_mining = false
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1726972188]
 texture_filter = 1
-texture = ExtResource("2_tex")
+texture = ExtResource("2_v2qwe")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=933622047]
 shape = SubResource("RectangleShape2D_scrap")
