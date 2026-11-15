@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://sm4l6hgcubdm" path="res://Scripts/dot_control.gd" id="8_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://crjactfct5hoq" path="res://Objects/ore.tscn" id="9_ore"]
 [ext_resource type="Texture2D" uid="uid://c4r76lwxesyn3" path="res://Assets/dot.png" id="10_bmxlf"]
-[ext_resource type="PackedScene" uid="uid://bb3r36fsf0a1b" path="res://Objects/scrap.tscn" id="11_scrap"]
+[ext_resource type="PackedScene" path="res://Objects/scrap.tscn" id="11_scrap"]
 [ext_resource type="Texture2D" uid="uid://bj3pmyock1vy5" path="res://Assets/red_ore_icon.png" id="12_grg3l"]
 [ext_resource type="Texture2D" uid="uid://rvgsajtp11mf" path="res://Assets/scrap_icon.png" id="15_h1m7h"]
 
@@ -187,7 +187,7 @@ offset_left = 504.0
 offset_top = 64.0
 offset_right = 1252.96
 offset_bottom = 55.92
-text = "2 - craft extra battery pack"
+text = "2 - bigger light emiter"
 label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="ConfirmLabel" type="Label" parent="CanvasLayer/HUD/CraftLabel" unique_id=1076705632]
