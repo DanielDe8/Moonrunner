@@ -291,5 +291,4 @@ emitting = false
 amount = 20
 texture = SubResource("GradientTexture2D_dust_px")
 lifetime = 0.35
-local_coords = false
 process_material = SubResource("ParticleProcessMaterial_mining")

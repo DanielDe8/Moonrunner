@@ -118,7 +118,7 @@ func update_animations(delta: float) -> void:
 func check_battery(delta: float) -> void:
 	# Recharge inside the camp's ChargingArea; otherwise drain based on idle, moving, and mining.
 	if charging_area.overlaps_body(self):
-		battery_life = min(battery_life + delta * 10, max_battery_life)
+		battery_life = min(battery_life + delta * 20, max_battery_life)
 	else:
 		battery_life -= idle_battery_consumption * delta
 		if velocity != Vector2.ZERO:
@@ -149,7 +149,7 @@ func check_mining(delta: float) -> void:
 
 
 func update_hud() -> void:
-	pass
+	get_node("%s/HUD/RedOreLabel" % hud_string).text = str(red_ore_count)
 
 
 func _physics_process(delta: float) -> void:
