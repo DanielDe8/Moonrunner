@@ -113,6 +113,8 @@ func update_animations(delta: float) -> void:
 	else:
 		$MiningAnimation.hide()
 		$MiningAnimation.pause()
+		
+	$"../Silo".update_ore_visual(red_ore_count)
 
 ## Updates battery charge/drain, HUD label, and respawns at camp if depleted.
 func check_battery(delta: float) -> void:
