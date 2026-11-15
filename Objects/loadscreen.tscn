@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c3tqd7kkj708h"]
+
+[ext_resource type="Script" uid="uid://ch62pspcc7ch2" path="res://Objects/loadscreen.gd" id="1_31obx"]
+[ext_resource type="FontFile" uid="uid://cyudaeo5xrvhj" path="res://Assets/Pixel12x10-v1.1.0.ttf" id="1_j8ajl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kkhfn"]
+font = ExtResource("1_j8ajl")
+font_size = 72
+
+[node name="Main Screen" type="Node2D" unique_id=1754760791]
+script = ExtResource("1_31obx")
+
+[node name="Control" type="Control" parent="." unique_id=1325675825]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1204129689]
+layout_mode = 0
+offset_top = 301.0
+offset_right = 1153.0
+offset_bottom = 650.0
+
+[node name="Label" type="Label" parent="Control/VBoxContainer" unique_id=749577984]
+layout_mode = 2
+text = "Moonrider"
+label_settings = SubResource("LabelSettings_kkhfn")
+horizontal_alignment = 1
+
+[node name="GoButton" type="Button" parent="Control/VBoxContainer" unique_id=614191751]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_j8ajl")
+theme_override_font_sizes/font_size = 42
+text = "Go"
+
+[node name="Button" type="Button" parent="Control/VBoxContainer" unique_id=790701847]
+visible = false
+custom_minimum_size = Vector2(0, -20.022)
+layout_mode = 2
+text = "Credits"
