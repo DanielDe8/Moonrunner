@@ -133,6 +133,7 @@ animations = [{
 }]
 
 [node name="Silo" type="Node2D" unique_id=516017579]
+script = ExtResource("1_sdkc4")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=959837505]
 
