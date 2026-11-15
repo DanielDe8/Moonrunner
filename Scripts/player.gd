@@ -1,6 +1,8 @@
 extends CharacterBody2D
 ## Player rover controller: 8-way movement, camera zoom, animations, and battery/respawn.
 
+
+
 # --- Movement & Animation ---
 @export var speed = 400
 @export var start_delay = 0.05   # Seconds of movement before tilting the antenna
@@ -179,6 +181,7 @@ func _physics_process(delta: float) -> void:
 	update_animations(delta)
 	check_battery(delta)
 	check_mining(delta)
+	camera.set_drilling(is_mining)
 	update_hud()
 
 	move_and_slide()
