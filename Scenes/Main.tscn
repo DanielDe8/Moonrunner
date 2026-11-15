@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dcx1qkahlrj3e" path="res://Objects/planet_surface.tscn" id="5_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dbd8nvvikbvr0" path="res://Objects/silo.tscn" id="6_4kpch"]
 [ext_resource type="PackedScene" uid="uid://camp1234fire" path="res://Objects/base_camp.tscn" id="6_camp"]
+[ext_resource type="PackedScene" uid="uid://uqaq4ghj1hns" path="res://Objects/silo_scrap.tscn" id="7_h1m7h"]
 [ext_resource type="Script" uid="uid://nw1tyfuhfnfj" path="res://Scripts/main.gd" id="7_main"]
 [ext_resource type="FontFile" uid="uid://chnv5lwc2bn3q" path="res://Assets/Pixel12x10Mono-v1.1.0.ttf" id="8_50glp"]
+[ext_resource type="Script" uid="uid://dx8fhrr1vdugr" path="res://silo_scrap_manager.gd" id="8_erwvk"]
 [ext_resource type="Script" uid="uid://sm4l6hgcubdm" path="res://Scripts/dot_control.gd" id="8_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://crjactfct5hoq" path="res://Objects/ore.tscn" id="9_ore"]
 [ext_resource type="Texture2D" uid="uid://c4r76lwxesyn3" path="res://Assets/dot.png" id="10_bmxlf"]
@@ -51,13 +53,17 @@ tile_set = SubResource("TileSet_floor")
 texture_filter = 1
 tile_set = SubResource("TileSet_ores")
 
+[node name="silo_scrap" parent="." unique_id=1196466654 instance=ExtResource("7_h1m7h")]
+position = Vector2(40, -30)
+script = ExtResource("8_erwvk")
+
 [node name="Silo" parent="." unique_id=516017579 instance=ExtResource("6_4kpch")]
-position = Vector2(-28, -17)
+position = Vector2(-28, -30)
 
 [node name="Camp" parent="." unique_id=884422119 instance=ExtResource("6_camp")]
 
 [node name="player" parent="." unique_id=1788329522 instance=ExtResource("1_r150o")]
-position = Vector2(21, 3)
+position = Vector2(-20, 84)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=651747093]
 
