@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bb3r36fsf0a1b" path="res://Objects/scrap.tscn" id="11_scrap"]
 [ext_resource type="Texture2D" uid="uid://bj3pmyock1vy5" path="res://Assets/red_ore_icon.png" id="12_grg3l"]
 [ext_resource type="Texture2D" uid="uid://rvgsajtp11mf" path="res://Assets/scrap_icon.png" id="15_h1m7h"]
+[ext_resource type="PackedScene" uid="uid://co4f4ht4ta5qx" path="res://Objects/rocket.tscn" id="17_2w5on"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_surface"]
 texture = ExtResource("3_merged")
@@ -38,7 +39,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_rgh2o")
 
 [sub_resource type="LabelSettings" id="LabelSettings_jw32o"]
 font = ExtResource("8_50glp")
-font_size = 30
+font_size = 35
 
 [node name="Node2D" type="Node2D" unique_id=1416863422]
 script = ExtResource("7_main")
@@ -160,7 +161,34 @@ offset_bottom = -89.29407
 text = "0"
 label_settings = SubResource("LabelSettings_jw32o")
 
+[node name="RocketLabel" type="Label" parent="CanvasLayer/HUD" unique_id=1543035931]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.001
+anchor_bottom = 1.0020001
+offset_left = 848.0
+offset_top = 32.0
+offset_right = -41.151
+offset_bottom = -580.29407
+text = "FIX ROCKET"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="ConfirmLabel" type="Label" parent="CanvasLayer/HUD" unique_id=140651244]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.001
+anchor_bottom = 1.0020001
+offset_left = 712.0
+offset_top = 128.0
+offset_right = 1015.95984
+offset_bottom = 119.91998
+text = "Enter - confirm"
+label_settings = SubResource("LabelSettings_jw32o")
+
 [node name="CraftLabel" type="Control" parent="CanvasLayer/HUD" unique_id=2072832110]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -195,9 +223,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.001
 anchor_bottom = 1.0020001
-offset_left = 784.0
-offset_top = 144.0
-offset_right = 1087.96
-offset_bottom = 135.92
+offset_left = 712.0
+offset_top = 128.0
+offset_right = 1065.96
+offset_bottom = 123.92
 text = "Enter - confirm"
 label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="Rocket" parent="." unique_id=1039927867 instance=ExtResource("17_2w5on")]
+position = Vector2(552, -256)

@@ -42,7 +42,8 @@ var scrap_count: int = 0
 var crafting_selection = -1
 var crafting_prices = [
 	[5, 15],
-	[20, 10]
+	[20, 10],
+	[100, 20]
 ]
 
 func _ready() -> void:
@@ -183,6 +184,21 @@ func update_hud() -> void:
 		get_node("%s/HUD/CraftLabel/ConfirmLabel" % hud_string).hide()
 		shown_crafting = false
 		crafting_selection = -1
+
+	if $"../Rocket/Area2D".overlaps_body(self):
+		crafting_selection = 2
+		get_node("%s/HUD/RocketLabel" % hud_string).show()
+		get_node("%s/HUD/ConfirmLabel" % hud_string).show()
+		
+		if Input.is_action_just_pressed("confirm"):
+			if crafting_prices[crafting_selection][1] <= red_ore_count and crafting_prices[crafting_selection][0] <= scrap_count:
+				scrap_count -= crafting_prices[crafting_selection][0]
+				red_ore_count -= crafting_prices[crafting_selection][1]
+				craft()
+	else:
+		crafting_selection = -1
+		get_node("%s/HUD/RocketLabel" % hud_string).hide()
+		get_node("%s/HUD/ConfirmLabel" % hud_string).hide()
 		
 	get_node("%s/HUD/RedOreLabel" % hud_string).text = str(red_ore_count) + (" -" + str(crafting_prices[crafting_selection][1]) if crafting_selection != -1 else "")
 	get_node("%s/HUD/ScrapLabel" % hud_string).text = str(scrap_count) + (" -" + str(crafting_prices[crafting_selection][0]) if crafting_selection != -1 else "")
@@ -191,9 +207,11 @@ func update_hud() -> void:
 func craft():
 	if(crafting_selection == 0):
 		max_battery_life += 50
-	if(crafting_selection == 1):
+	elif(crafting_selection == 1):
 		$PointLight2D.texture_scale += 0.25
-
+	elif crafting_selection == 2:
+		$"../Rocket/AnimatedSprite2D".frame = 1
+		get_tree().change_scene_to_file.call_deferred("res://Objects/konec.tscn")
 
 
 func _physics_process(delta: float) -> void:
