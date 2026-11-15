@@ -16,7 +16,7 @@ radius = 80.75271
 size = Vector2(16, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s0lj0"]
-size = Vector2(24, 12)
+size = Vector2(24, 13)
 
 [node name="Camp" type="Node2D" unique_id=884422119]
 script = ExtResource("2_script")
@@ -56,6 +56,7 @@ texture = ExtResource("4_0imks")
 position = Vector2(0, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CraftingArea" unique_id=956253749]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_s0lj0")
 
 [node name="Sprite2D" type="Sprite2D" parent="CraftingArea" unique_id=884481579]
