@@ -169,13 +169,27 @@ func update_hud() -> void:
 			crafting_selection = 0
 		elif Input.is_action_just_pressed("2"):
 			crafting_selection = 1
+			
+		if crafting_selection != -1:
+			get_node("%s/HUD/CraftLabel/ConfirmLabel" % hud_string).show()
+			
+			if Input.is_action_just_pressed("confirm"):
+				if crafting_prices[crafting_selection][1] <= red_ore_count and crafting_prices[crafting_selection][0] <= scrap_count:
+					scrap_count -= crafting_prices[crafting_selection][0]
+					red_ore_count -= crafting_prices[crafting_selection][1]
+					craft()
 	else:
 		get_node("%s/HUD/CraftLabel" % hud_string).hide()
+		get_node("%s/HUD/CraftLabel/ConfirmLabel" % hud_string).hide()
 		shown_crafting = false
 		crafting_selection = -1
 		
 	get_node("%s/HUD/RedOreLabel" % hud_string).text = str(red_ore_count) + (" -" + str(crafting_prices[crafting_selection][1]) if crafting_selection != -1 else "")
 	get_node("%s/HUD/ScrapLabel" % hud_string).text = str(scrap_count) + (" -" + str(crafting_prices[crafting_selection][0]) if crafting_selection != -1 else "")
+
+
+func craft():
+	print("crafting %d" % crafting_selection)
 
 
 func _physics_process(delta: float) -> void:

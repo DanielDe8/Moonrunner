@@ -155,6 +155,7 @@ text = "0"
 label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="CraftLabel" type="Control" parent="CanvasLayer/HUD" unique_id=2072832110]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -164,11 +165,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.001
 anchor_bottom = 1.0020001
-offset_left = 296.0
+offset_left = 504.0
 offset_top = 24.0
-offset_right = 875.96
+offset_right = 1083.96
 offset_bottom = 15.919998
-text = "Press 1 to upgrade battery"
+text = "1 - upgrade battery"
 label_settings = SubResource("LabelSettings_jw32o")
 
 [node name="2" type="Label" parent="CanvasLayer/HUD/CraftLabel" unique_id=242099953]
@@ -176,9 +177,22 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.001
 anchor_bottom = 1.0020001
-offset_left = 296.0
+offset_left = 504.0
 offset_top = 64.0
-offset_right = 1044.96
+offset_right = 1252.96
 offset_bottom = 55.92
-text = "Press 2 to craft extra battery pack"
+text = "2 - craft extra battery pack"
+label_settings = SubResource("LabelSettings_jw32o")
+
+[node name="ConfirmLabel" type="Label" parent="CanvasLayer/HUD/CraftLabel" unique_id=1076705632]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.001
+anchor_bottom = 1.0020001
+offset_left = 784.0
+offset_top = 144.0
+offset_right = 1087.96
+offset_bottom = 135.92
+text = "Enter - confirm"
 label_settings = SubResource("LabelSettings_jw32o")
